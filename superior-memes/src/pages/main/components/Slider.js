@@ -3,54 +3,26 @@ import './Slider.css'
 import TinderCard from 'react-tinder-card'
 import * as AiContext from 'react-icons/ai'
 import { IconContext } from "react-icons";
+import api from '../../../services/api'
 
 export default class Slider extends Component{
 
     state = {
-        meme: [
-            {
-                publisherName: 'Iguinho',
-                publisherID: '6234623746237',
-                memeLikes: '23',
-                memeDislikes: '3234',
-                link: 'http://pensaraeducacao.com.br/rbeducacaobasica/wp-content/uploads/sites/5/2018/10/capa-para-artigo.jpg'
-            },
-            {
-                publisherName: 'Iguinho2',
-                publisherID: '6234623746237',
-                memeLikes: '1',
-                memeDislikes: '87643',
-                link: 'https://i.pinimg.com/564x/84/f9/e9/84f9e953fef2342e017fe4f95a241464.jpg'
-            }, 
-            {
-                publisherName: 'Iguinho3',
-                publisherID: '237',
-                memeLikes: '1123',
-                memeDislikes: '545',
-                link: 'https://s2.glbimg.com/u9kjj3s_n1MbEkXhvtDhdnorc7w=/0x0:535x583/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/e/O/aqCMmST1qmjfJaL63cKQ/meme-1.jpg'
-            }, 
-            {
-                publisherName: 'Iguinho4',
-                publisherID: '746237',
-                memeLikes: '81123',
-                memeDislikes: '545',
-                link: 'https://blogs.correiobraziliense.com.br/papodeconcurseiro/wp-content/uploads/sites/14/2019/09/Na%C3%A7%C3%A3o-Jur%C3%ADdica.jpg'
-            },
-            {
-                publisherName: 'Iguinho5',
-                publisherID: '23746237',
-                memeLikes: '91123',
-                memeDislikes: '545',
-                link: 'https://img.estadao.com.br/fotos/crop/640x400/resources/jpg/6/5/1577718484956.jpg'
-            },
-            {
-                publisherName: 'Iguinho6',
-                publisherID: '34623746237',
-                memeLikes: '1132323',
-                memeDislikes: '545',
-                link: 'https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2021/01/Memes-Fuvest.jpg'
-            },
-        ]
+        meme: []
+    }
+
+    componentDidMount() {
+        this.loadRequests()
+    }
+
+    loadRequests = async() => {
+        try{
+            const response = await api.get(`/list`)
+            this.setState({meme: response.data.docs})
+        }catch{
+            console.log("Erro ao carregar produtos")
+            alert("Erro ao carregar produtos")
+        }
     }
 
     onSwipe = (direction) => {
@@ -66,12 +38,12 @@ export default class Slider extends Component{
             // <div className="slider">
             <>
             {/* <div className="slider" style={{backgroundColor: '#fff'}}/> */}
+            {console.log(this.state.meme)}
             {this.state.meme.map((meme) => (
                 <div className="swipe-container">
                     <TinderCard onSwipe={this.onSwipe} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
                         <div className="swipe-content">
-                            <p> {meme.name} </p>
-                            <img src={meme.link} />
+                            <img src={meme.imageUrl} />
 
                             <div className="linha-horizontal"/> 
 
@@ -81,14 +53,14 @@ export default class Slider extends Component{
                                     <IconContext.Provider value={{color: "#006eff", size: '40'}}>
                                         <AiContext.AiFillLike/>
                                     </IconContext.Provider>
-                                    <p>{meme.memeLikes}</p>
+                                    <p>{meme.likes}</p>
                                 </div>
 
                                 <div className="swipe-content-button-dislike">
                                     <IconContext.Provider value={{color: "#006eff", className: "global-class-name", size: '40'}}>
                                         <AiContext.AiOutlineDislike/>
                                     </IconContext.Provider>
-                                    <p>{meme.memeDislikes}</p>
+                                    <p>{meme.dislikes}</p>
                                 </div>
 
                                 <p style={{paddingTop: '40px', color: '#DDD'}}> @{meme.publisherName}</p>
