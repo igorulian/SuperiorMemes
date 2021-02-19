@@ -1,0 +1,56 @@
+.swipe-content{
+    background-color: #ffffff;
+    width: fit-content;
+    height: 585px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px 3px #ccc;
+}
+
+.swipe-content img{
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.swipe-content-button-like{
+    width: fit-content;
+    height: fit-content;
+    float: right;
+    margin-right: 40px;
+}
+
+.swipe-content-button-dislike{
+    width: fit-content;
+    height: fit-content;
+    float: left;
+    margin-left: 40px;
+}
+
+.swipe-container{
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    max-width: 500px;
+    margin-top: 5%;
+    box-shadow: 2px 2px 3px #ccc;
+    border-radius: 10px;
+}
+
+.linha-horizontal{
+    width: 90%;
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 6px;
+    border: 1px solid #f1f1f1; 
+}
+
+.swipe-content-footer{
+    height: 10px;
+    text-align: center;
+}

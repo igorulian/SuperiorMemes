@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+.container-upload-image{
+    /* background-color: #ffffff; */
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+.container-upload-image button{
+    margin-right: 85px;
+}
+
+.publisher-name{
+    align-items: center;
+    justify-content: center;
+}
+
+.publisher-name p{
+    font-family: 'Amatic SC', cursive;
+    font-size: 28px;
+    color: #006eff;
+    float: left;
+}
+
+.publisher-name input{
+    font-size: 20px;
+    padding: 4px;
+    width: 190px;
+    float: right;
+    border-color: #006eff;
+    border-width: 1px;
+    border-radius: 10px;
+    color: #006eff;
+    padding-left: 10px;
+}

@@ -1,13 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 .page{
     padding: 0;
     margin: 0;
-    background-color: #333;
     height:100vh; 
     width: 100%;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .page h1{
-    color: #fff;
-    padding-top: 40px;
+    color: #006eff;
+    padding-top: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 70px;
+}
+
+.btnUpload{
+    border-style: none;
+    background-color: #0000;
+    border: 2px solid #006eff;
+    color:#006eff;
+    padding: 5px;
+    border-radius: 5px;
+    height: 40px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 'Amatic SC', cursive;
+}
+
+.btnUpload p{
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+}
+
+.btnUpload:hover{
+    background-color: #006eff;
+    border: 2px solid #006eff;
+    color:#fff;
 }
