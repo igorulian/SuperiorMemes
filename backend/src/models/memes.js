@@ -9,17 +9,15 @@ const memeSchema = new mongoose.Schema({
     },
     imageUrl:{
         type:String,
-        required: false,
+        required: true,
         default: ''
     },
     likes:{
         type:Number,
-        required: true,
         default: 0
     },
     dislikes:{
         type:Number,
-        required: true,
         default: 0
     },
     createdAt:{
