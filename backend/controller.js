@@ -44,50 +44,38 @@ module.exports = {
     },
     async uploadImage(req,res) {
         try{
-            // console.log(req.file)
             return res.json(req.file)
         }catch{
-            return res.status(400).send({error: 'Error in upload meme'})
+            return res.status(400).send({error: 'Error in upload image'})
         }
     },
     async rate(req,res) {
         try{
+            const ld = req.params.ld 
 
-            const meme = Meme.create(req.body)
+            const store = await Meme.findById(req.params.id)
+            const likes = store.likes + 1
+            const dislikes = store.dislikes + 1
 
-            return res.json(req.body)
-        
+            if(ld == 1){
+                const newMeme = {
+                    likes: likes
+                }
+                await Meme.findByIdAndUpdate(req.params.id, newMeme, {new: true,useFindAndModify: false})
+            }else{
+                const newMeme = {
+                    dislikes: dislikes
+                }
+                await Meme.findByIdAndUpdate(req.params.id, newMeme, {new: true,useFindAndModify: false})
+            }
+
+            
+            const vote = ld == 1 ? 'like' : 'dislike'
+            console.log('Voted: ID: ' + req.params.id + 'vote: ' + vote )
+
+            return res.json({OK: 'OK'})
         }catch{
-            return res.status(400).send({error: 'Error in upload meme'})
+            return res.status(400).send({error: 'Error in rate meme'})
         }
     },
-    // async delete(req,res) {  // depois vincular a key (nome) com o id do restaurabte para poder deletar apenas se for do restaurante
-    //     try{
-    //         if(!(req.storeId === req.params.id))
-    //         return res.status(400).send({error: 'Invalid store'}) 
-
-    //         const imageKey = req.params.imageid
-    //         // console.log('IMG: ' + imageKey)
-
-    //         var params = {
-    //             Bucket: 'upload-delivery', 
-    //             Delete: { // required
-    //             Objects: [ // required
-    //                 {
-    //                 Key: imageKey // required
-    //                 }
-    //             ],
-    //             },
-    //         };
-
-    //         s3.deleteObjects(params, function(err, data) {
-    //             if (err) console.log(err, err.stack); // an error occurred
-    //             // else  console.log(data);           // successful response
-    //         });
-
-    //         return res.status(200).send('OK')
-    //     }catch{
-    //         return res.status(400).send({error: 'Error in delete image'})
-    //     }
-    // }
 }

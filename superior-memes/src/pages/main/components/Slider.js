@@ -25,23 +25,25 @@ export default class Slider extends Component{
         }
     }
 
-    onSwipe = (direction) => {
-        console.log('You swiped: ' + direction)
-      }
+    onSwipe = async(direction, memeid) => {
+        var rate = 0
+        direction == 'right' ? rate = 1 : rate = 0
+        await api.post(`rate/${rate}/${memeid}`)
+    }
        
     onCardLeftScreen = (myIdentifier) => {
         console.log(myIdentifier + ' left the screen')
     }
 
+    //<TinderCard onSwipe={this.onSwipe(memeid=meme._id)} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
+
     render(){
         return (
-            // <div className="slider">
             <>
-            {/* <div className="slider" style={{backgroundColor: '#fff'}}/> */}
             {console.log(this.state.meme)}
             {this.state.meme.map((meme) => (
                 <div className="swipe-container">
-                    <TinderCard onSwipe={this.onSwipe} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
+                    <TinderCard onSwipe={(direction, memeid=meme._id) => {this.onSwipe(direction,memeid)}} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
                         <div className="swipe-content">
                             <img src={meme.imageUrl} />
 
