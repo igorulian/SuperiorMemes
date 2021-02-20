@@ -37,3 +37,22 @@
     color: #006eff;
     padding-left: 10px;
 }
+
+.btnCancelarEnvioImagem{
+    width: 30px;
+    height: 30px;
+    float: right;
+    border-radius: 20px;
+    background-color: #006eff;
+    border-style: none;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: 264px;
+    margin-top: -15px;
+    cursor: pointer;
+}
+.btnCancelarEnvioImagem:hover{
+    background-color: #006effb2;
+}

@@ -42,6 +42,14 @@ module.exports = {
             return res.status(400).send({error: 'Error in upload meme'})
         }
     },
+    async uploadImage(req,res) {
+        try{
+            
+            return res.json(req.file)
+        }catch{
+            return res.status(400).send({error: 'Error in upload meme'})
+        }
+    },
     async rate(req,res) {
         try{
 
