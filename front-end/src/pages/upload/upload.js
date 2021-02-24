@@ -66,7 +66,7 @@ export default class Upload extends Component{
             this.resetVariables()
         })
 
-        if(imageUrl == ''){alert('Error sending image, try again later'); this.resetVariables(); return;}
+        if(imageUrl === ''){alert('Error sending image, try again later'); this.resetVariables(); return;}
 
         const publisherName = this.publisherNameInput.value
 
@@ -110,7 +110,7 @@ export default class Upload extends Component{
                 <div className="container-upload-image">
                     <Dropzone accept="image/*" onDropAccepted={(file) => this.showImageToBeSent(file)}>
                         { ({getRootProps, getInputProps, isDragActive, isDragReject}) => (
-                            this.state.uploadingImageUrl == '' ?
+                            this.state.uploadingImageUrl === '' ?
                             <DropContainer {...getRootProps()}
                             isDragActive={isDragActive}
                             isDragReject={isDragReject}
@@ -133,7 +133,7 @@ export default class Upload extends Component{
                         <p> Publisher: </p>
                         <input ref={input => this.publisherNameInput = input} />
                     </div>
-                    <button className="btnUpload" onClick={() => this.uploadMeme()}> {this.state.sending == false ? <b>Send meme</b> : <b>Sending...</b>} </button>
+                    <button className="btnUpload" onClick={() => this.uploadMeme()}> {this.state.sending === false ? <b>Send meme</b> : <b>Sending...</b>} </button>
                 </div>
 
             </div>

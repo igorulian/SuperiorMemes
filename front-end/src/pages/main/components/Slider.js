@@ -27,7 +27,7 @@ export default class Slider extends Component{
 
     onSwipe = async(direction, memeid) => {
         var rate = 0
-        direction == 'right' ? rate = 1 : rate = 0
+        direction === 'right' ? rate = 1 : rate = 0
 
         await api.post(`rate/${rate}/${memeid}`)
 
