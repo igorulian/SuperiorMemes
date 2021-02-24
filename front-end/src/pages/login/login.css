@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+.login-container{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    display: block;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.login-container input{
+    font-size: 20px;
+    padding: 4px;
+    width: 250px;
+    float: right;
+    border-color: #006eff;
+    border-width: 1px;
+    border-radius: 10px;
+    color: #006eff;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.login-container p{
+    width: fit-content;
+    color: #006eff;
+    font-size: 30px;
+    font-family: 'Amatic SC', cursive;
+}
+
+.login-title {
+    padding-top: 80px;
+    color: #006eff;
+    font-family: 'Amatic SC', cursive;
+    font-size: 50px;
+}
+
+.btnLogin{
+    border-style: none;
+    background-color: #0000;
+    border: 2px solid #006eff;
+    color:#006eff;
+    padding: 5px;
+    border-radius: 5px; 
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 'Amatic SC', cursive;
+    display: block;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+    position: absolute;
+    margin-top: 80px;
+    font-size: 25px;
+    width: 180px;
+}
+
+.btnLogin p{
+    font-family: 'Amatic SC', cursive;
+}
+
+.btnLogin:hover{
+    background-color: #006eff;
+    border: 2px solid #006eff;
+    color:#fff;
+}
+
+.register-txt{
+    margin-top: 140px;
+}
+
+.register-txt p {
+    font-size: 20px;
+    margin-left: 86px;
+}
+
+.register-txt p:hover{
+    color: #ccc;
+}

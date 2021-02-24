@@ -70,8 +70,8 @@ module.exports = {
             }
 
             
-            const vote = ld == 1 ? 'like' : 'dislike'
-            console.log('Voted: ID: ' + req.params.id + 'vote: ' + vote )
+            // const vote = ld == 1 ? 'like' : 'dislike'
+            // console.log('Voted: ID: ' + req.params.id + 'vote: ' + vote )
 
             return res.json({OK: 'OK'})
         }catch{

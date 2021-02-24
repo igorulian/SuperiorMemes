@@ -1,8 +1,10 @@
 import React from 'react'
-import {BrowserRouter as Router,Routes,Route,Switch} from 'react-router-dom' //react-router-dom@6.0.0-beta.0
+import {Routes,Route} from 'react-router-dom' //react-router-dom@6.0.0-beta.0
 
 import Main from './pages/main/main.js'
 import Upload from './pages/upload/upload'
+import Login from './pages/login/login'
+// import Login from './pages/register/'
 
 // const PrivateRoute = props => {
 //     const vT = validToken()
@@ -14,6 +16,8 @@ export default function MainRoutes(){
         <Routes>
             <Route path="/" element={<Main/>} />
             <Route path="/upload" element={<Upload/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Login/>} />
         </Routes>
     )
 }
