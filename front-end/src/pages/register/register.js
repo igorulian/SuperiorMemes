@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../styles.css'
 import './register.css'
+import api from '../../services/api'
 
 export default class Register extends Component{
 
@@ -15,6 +16,11 @@ export default class Register extends Component{
         const pass = this.passInput.value
         const pass2 = this.pass2Input.value
 
+        console.log(user)
+        console.log(email)
+        console.log(pass)
+
+        
         if(!email || !pass || !pass2 || !user){
             alert('Fill in all fields ')
             return
@@ -23,7 +29,34 @@ export default class Register extends Component{
             alert('Passwords do not match ')
         }
 
+
         this.setState({loading: true})
+        this.requestRegister(user,email,pass)
+    }
+
+    requestRegister = async (user, email, password) => {
+        const req = {
+            user,
+            email,
+            password
+        }
+
+        await api.post(`/register`, req)
+        .then(response => {
+            const token = response.data.token
+            localStorage.setItem("token", token)
+
+            this.redirectToDashboard()
+        })
+        .catch(erro => {
+            alert(erro.response.data.error)
+        })
+
+        this.setState({loading: false})
+    }
+
+    redirectToDashboard = () =>{
+        window.location.href = '/'
     }
 
     render(){

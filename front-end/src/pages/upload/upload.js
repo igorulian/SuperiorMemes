@@ -26,7 +26,6 @@ export default class Upload extends Component{
 
     showImageToBeSent  = async (file) => {
         try{
-            //URL.createObjectURL(file) // URL.createObjectURL(file[0])
             const imageUrl = URL.createObjectURL(file[0])
             this.setState({uploadingImageUrl: imageUrl})
 
@@ -53,37 +52,46 @@ export default class Upload extends Component{
         this.setState({...this.state, sending: true})
 
         const image = this.state.uploadedImage
+        const description = this.memeDescriptionInput.value
 
         if(!image){alert('You have to send a image to upload your meme'); this.resetVariables(); return;}
 
         var imageUrl = ''
 
-        await api.post(`/upload/image`,image).then(res => {
+        const token = localStorage.getItem('token')
+        const authorizaton = {
+            headers: {
+            'Authorization': `Bearer ${token}` 
+            }
+        }
+
+        await api.post(`/upload/image`,image,authorizaton)
+        .then(res => {
             imageUrl = res.data.location
-        }).catch(err => {
-            console.log(err)
-            alert('Error sending image, try a smaller one')
+        })
+        .catch(erro => {
+            console.log(erro.response.data.error)
+            alert(erro.response.data.error)
             this.resetVariables()
         })
 
         if(imageUrl === ''){alert('Error sending image, try again later'); this.resetVariables(); return;}
 
-        const publisherName = this.publisherNameInput.value
-
         const meme = {
-            publisherName,
             imageUrl,
+            description
         }
 
         console.log(meme)
-        if(!publisherName){alert('Type your publisher name'); this.resetLoading(); return;}
 
-        await api.post(`/upload`,meme).then(res => {
+        await api.post(`/upload`,meme,authorizaton)
+        .then(res => {
             console.log(res)
             this.uploadSucessfull()
-        }).catch(err => {
-            console.log(err)
-            alert('Error sending meme, try again later')
+        })
+        .catch(erro => {
+            console.log(erro.response.data.error)
+            alert(erro.response.data.error)
             this.resetVariables();
         })
 
@@ -125,13 +133,13 @@ export default class Upload extends Component{
                             : 
                             <div>
                                 <button className="btnCancelarEnvioImagem" style={{marginRight: '0px'}} onClick={() => this.cancelImageUpload()}>x </button>
-                                <img src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
+                                <img alt="Imagem a ser enviada" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
                             </div>
                         )}
                     </Dropzone>
-                    <div className="publisher-name">
-                        <p> Publisher: </p>
-                        <input ref={input => this.publisherNameInput = input} />
+                    <div className="meme-description">
+                        <p> Descrição: </p>
+                        <input ref={input => this.memeDescriptionInput = input} />
                     </div>
                     <button className="btnUpload" onClick={() => this.uploadMeme()}> {this.state.sending === false ? <b>Send meme</b> : <b>Sending...</b>} </button>
                 </div>

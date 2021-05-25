@@ -14,19 +14,19 @@
     margin-right: 85px;
 }
 
-.publisher-name{
+.meme-description{
     align-items: center;
     justify-content: center;
 }
 
-.publisher-name p{
+.meme-description p{
     font-family: 'Amatic SC', cursive;
     font-size: 28px;
     color: #006eff;
     float: left;
 }
 
-.publisher-name input{
+.meme-description input{
     font-size: 20px;
     padding: 4px;
     width: 190px;

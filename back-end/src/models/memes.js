@@ -7,18 +7,30 @@ const memeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    publisherID:{
+        type: String,
+        required: true
+    },
     imageUrl:{
         type:String,
         required: true,
         default: ''
     },
+    description:{
+        type:String,
+        default: ''
+    },
     likes:{
         type:Number,
-        default: 0
+        default: 0,
     },
     dislikes:{
         type:Number,
         default: 0
+    },
+    alreadyRate:{
+        type: [String],
+        select: false
     },
     createdAt:{
         type: Date,

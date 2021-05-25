@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles.css'
 import './login.css'
+import api from '../../services/api'
 
 export default class Login extends Component{
 
@@ -9,7 +10,7 @@ export default class Login extends Component{
         loading: false
     }
 
-    login = () => {
+    login = async () => {
         const email = this.emailInput.value
         const pass = this.passInput.value
 
@@ -21,7 +22,30 @@ export default class Login extends Component{
         this.setState({loading: true})
 
         // Request de Login
+        await this.requestLogin(email, pass)
 
+    }
+
+    requestLogin = async (email, password) => {
+        const req = {
+            email,
+            password
+        }
+        await api.post(`/login`, req).then(response => {
+            const token = response.data.token
+            localStorage.setItem("token", token)
+
+            this.redirectToDashboard()
+
+        }).catch(erro => {
+            alert(erro.response.data.error)
+        })
+
+        this.setState({loading: false})
+    }
+
+    redirectToDashboard = () =>{
+        window.location.href = '/'
     }
 
     render(){

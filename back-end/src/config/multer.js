@@ -3,6 +3,7 @@ const path = require('path')
 const crypto = require('crypto')
 const aws = require('aws-sdk')
 const multers3 = require('multer-s3')
+require('dotenv')
 
 const storageType = {
     local: multer.diskStorage({
@@ -13,24 +14,23 @@ const storageType = {
             crypto.randomBytes(16, (err, hash) => {
                 if( err ) cb(err)
 
-                file.key = `teste-project-${hash.toString('hex')}`
-                //const filename = `${hash.toString('hex')}-${file.originalname}`
+                // file.key = `${req.tokenUserId}-${hash.toString('hex')}`
+                const filename = `${req.tokenUserId}-${hash.toString('hex')}`
 
-                cb(null,file.key)
+                cb(null,filename)
             })
         }
     }),
     s3: multers3({
         s3: new aws.S3(),
-        bucket: 'upload-delivery',
+        bucket: process.env.AWS_BUCKET,
         contentType: multers3.AUTO_CONTENT_TYPE,
         acl: 'public-read',
         key: (req,file,cb) => {
             crypto.randomBytes(16, (err, hash) => {
                 if( err ) cb(err)
 
-                const filename = `teste-project-${hash.toString('hex')}`
-                //const filename = `${hash.toString('hex')}-${file.originalname}`
+                const filename = `${req.tokenUserId}-${hash.toString('hex')}`
 
                 cb(null,filename)
             })
@@ -48,7 +48,11 @@ module.exports = {
         const allowedMimes = [
             'image/jpeg',
             'image/pjpeg',
-            'image/png'
+            'image/png',
+            'image/gif',
+            "video/wav",
+            "video/mp4"
+
         ]
 
         if(allowedMimes.includes(file.mimetype)){

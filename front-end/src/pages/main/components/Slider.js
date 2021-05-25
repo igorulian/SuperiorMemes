@@ -17,22 +17,39 @@ export default class Slider extends Component{
 
     loadRequests = async() => {
         try{
-            const response = await api.get(`/list`)
-            this.setState({meme: response.data.docs})
+            const token = localStorage.getItem('token')
+            const authorizaton = {
+                headers: {
+                'Authorization': `Bearer ${token}` 
+                }
+            }
+
+            const response = await api.get(`/list`,authorizaton)
+            
+            this.setState({meme: response.data})
         }catch{
-            console.log("Erro ao carregar produtos")
-            alert("Erro ao carregar produtos")
+            console.log("Erro ao carregar memes")
+            alert("Erro ao carregar memes")
         }
     }
 
-    onSwipe = async(direction, memeid) => {
+    onSwipe = async (direction, memeid) => {
         var rate = 0
         direction === 'right' ? rate = 1 : rate = 0
 
-        await api.post(`rate/${rate}/${memeid}`)
+        const token = localStorage.getItem('token')
+        const authorizaton = {
+            headers: {
+            'Authorization': `Bearer ${token}` 
+            }
+        }
 
-        await api.post('rate/' + rate + '/' + memeid)
-
+        await api.post(`/rate/${memeid}/${rate}`,{},authorizaton)
+        .then(req => { 
+            console.log(req)
+        }).catch(erro => {
+            console.log(erro.response.data.error)
+        })
 
     }
        
@@ -40,17 +57,19 @@ export default class Slider extends Component{
         console.log(myIdentifier + ' left the screen')
     }
 
-    //<TinderCard onSwipe={this.onSwipe(memeid=meme._id)} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
 
     render(){
         return (
             <>
-            {console.log(this.state.meme)}
+            {this.state.meme.length <= 0 && 
+                <h1 style={{fontSize: '40px', marginTop: '200px'}}> Você ja viu todos os memes disponíveis por enquanto :) </h1>
+            }
+
             {this.state.meme.map((meme) => (
-                <div className="swipe-container">
+                <div className="swipe-container" key={meme._id}>
                     <TinderCard onSwipe={(direction, memeid=meme._id) => {this.onSwipe(direction,memeid)}} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
                         <div className="swipe-content">
-                            <img src={meme.imageUrl} />
+                            <img src={meme.imageUrl}/>
 
                             <div className="linha-horizontal"/> 
 
@@ -70,7 +89,9 @@ export default class Slider extends Component{
                                     <p>{meme.dislikes}</p>
                                 </div>
 
-                                <p style={{paddingTop: '40px', color: '#DDD'}}> @{meme.publisherName}</p>
+                                <p style={{paddingTop: '1px', color: '#333'}}> {meme.description}</p>
+
+                                <p style={{paddingTop: '5px', color: '#DDD'}}> @{meme.publisherName}</p>
 
                             </div>
                         </div>
