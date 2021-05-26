@@ -17,10 +17,7 @@
 .meme-description{
     align-items: center;
     justify-content: center;
-}
-
-.meme-description input{
-    background-color: #2a2a2e;
+    display: flex;
 }
 
 .meme-description p{
@@ -39,6 +36,7 @@
     border-width: 1px;
     border-radius: 10px;
     color: #006eff;
+    background-color: #2a2a2e;
     padding-left: 10px;
 }
 

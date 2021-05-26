@@ -34,22 +34,13 @@ module.exports = {
         try{
             const userid = req.tokenUserId
             
-            // const memes = await Meme.paginate({}, {page, limit:40}) 
-            const memes = await Meme.find().sort({likes: -1}).select('+alreadyRate')
-            // const memes = await Meme.find().select('+alreadyRate')
+            const user = await User.findById(userid)
+            const likedMemesIDList = user.likedMemes
+            
+            const likedMemes = await Meme.find( { _id : { $in : likedMemesIDList } } )
 
-            const memesAlreadyRate = []
 
-            memes.forEach(meme => {
-
-                if(meme.alreadyRate.includes(userid)){
-                    meme.alreadyRate = null
-                    memesAlreadyRate.push(meme)
-                }
-                
-            });
-
-            return res.json(memesAlreadyRate)
+            return res.json(likedMemes)
         }catch(err){
             console.log(err)
             return res.status(400).send({error: 'Error in list memes'})
@@ -99,7 +90,6 @@ module.exports = {
             const rate = req.params.rate 
             const userid = req.tokenUserId
 
-            const user = await User.findByIdAndUpdate(req.tokenUserId)
             const meme = await Meme.findById(memeid).select('+alreadyRate')
 
             if(!meme)
@@ -123,6 +113,8 @@ module.exports = {
                         likes: likes + 1,
                         alreadyRate: newAlreadyRate
                     }
+
+                    await User.findByIdAndUpdate(req.tokenUserId,{$addToSet: {likedMemes: memeid}})
                     
                     break;
 

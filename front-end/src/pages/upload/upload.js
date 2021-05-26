@@ -16,13 +16,13 @@ export default class Upload extends Component{
 
     renderDrageMessage = (isDragActive, isDragReject) => {
         if (!isDragActive){
-            return <UploadMessage style={{fontSize: '30px'}}> Drag your image here</UploadMessage>
+            return <UploadMessage style={{fontSize: '30px'}}> Drag your meme here</UploadMessage>
         }
         if(isDragReject){
             return <UploadMessage type="error" style={{marginLeft:'35px'}}> File not suported </UploadMessage>
         }
 
-        return <UploadMessage type="sucess"> Drop your image here </UploadMessage>
+        return <UploadMessage type="sucess"> Drop your meme here </UploadMessage>
     }
 
     showImageToBeSent  = async (file) => {
@@ -143,7 +143,7 @@ export default class Upload extends Component{
                         )}
                     </Dropzone>
                     <div className="meme-description">
-                        <p> Descrição: </p>
+                        <p> Description: </p>
                         <input ref={input => this.memeDescriptionInput = input} />
                     </div>
                     <button className="btnUpload" onClick={() => this.uploadMeme()}> {this.state.sending === false ? <b>Send meme</b> : <b>Sending...</b>} </button>

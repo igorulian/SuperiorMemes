@@ -18,6 +18,7 @@ routes.post('/login', AuthController.login)
 routes.use(authMiddleware)
 
 routes.get('/list', Controller.list)
+routes.get('/list/liked', Controller.listLikedMemes)
 routes.get('/show/:id', Controller.show)
 routes.post('/upload/image',multer(multerConfig).single('file'), Controller.uploadImage)
 routes.post('/upload', Controller.upload)
