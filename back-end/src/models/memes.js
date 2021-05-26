@@ -16,6 +16,11 @@ const memeSchema = new mongoose.Schema({
         required: true,
         default: ''
     },
+    mimetype:{
+        type: String,
+        require: true,
+        default: ''
+    },
     description:{
         type:String,
         default: ''

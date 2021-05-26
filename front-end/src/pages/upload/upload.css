@@ -19,6 +19,10 @@
     justify-content: center;
 }
 
+.meme-description input{
+    background-color: #2a2a2e;
+}
+
 .meme-description p{
     font-family: 'Amatic SC', cursive;
     font-size: 28px;

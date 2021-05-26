@@ -30,6 +30,31 @@ module.exports = {
             return res.status(400).send({error: 'Error in list memes'})
         }
     },
+    async listLikedMemes(req,res){ // acho que ñ é mt eficiente desse jeito, mas vai por enquanto
+        try{
+            const userid = req.tokenUserId
+            
+            // const memes = await Meme.paginate({}, {page, limit:40}) 
+            const memes = await Meme.find().sort({likes: -1}).select('+alreadyRate')
+            // const memes = await Meme.find().select('+alreadyRate')
+
+            const memesAlreadyRate = []
+
+            memes.forEach(meme => {
+
+                if(meme.alreadyRate.includes(userid)){
+                    meme.alreadyRate = null
+                    memesAlreadyRate.push(meme)
+                }
+                
+            });
+
+            return res.json(memesAlreadyRate)
+        }catch(err){
+            console.log(err)
+            return res.status(400).send({error: 'Error in list memes'})
+        }
+    },
     async show(req,res){
         try{
             const meme = await Meme.findById(req.params.id)
@@ -49,6 +74,7 @@ module.exports = {
                 publisherName: user.user,
                 publisherID: user._id,
                 imageUrl: req.body.imageUrl,
+                mimetype: req.body.mimetype,
                 description: req.body.description
             }
 
@@ -73,6 +99,7 @@ module.exports = {
             const rate = req.params.rate 
             const userid = req.tokenUserId
 
+            const user = await User.findByIdAndUpdate(req.tokenUserId)
             const meme = await Meme.findById(memeid).select('+alreadyRate')
 
             if(!meme)
@@ -96,6 +123,7 @@ module.exports = {
                         likes: likes + 1,
                         alreadyRate: newAlreadyRate
                     }
+                    
                     break;
 
                 case '0':

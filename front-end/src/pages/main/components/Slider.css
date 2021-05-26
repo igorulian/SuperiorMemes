@@ -1,13 +1,13 @@
 .swipe-content{
-    background-color: #ffffff;
+    background-color: #282a2e;
     width: fit-content;
-    height: 585px;
+    height: 620px;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    border: 3px solid #fff;
+    border: 3px solid #282a2e;
     border-radius: 10px;
-    box-shadow: 2px 2px 3px 3px #ccc;
+    box-shadow: 2px 2px 3px 3px #1b1b1b;
 }
 
 .swipe-content img{
@@ -16,11 +16,18 @@
     border-radius: 10px;
 }
 
+.swipe-content iframe{
+    width: 500px;
+    height: 500px;
+    border: 0;
+}
+
 .swipe-content-button-like{
     width: fit-content;
     height: fit-content;
     float: right;
     margin-right: 40px;
+    color: #949494;
 }
 
 .swipe-content-button-dislike{
@@ -28,6 +35,7 @@
     height: fit-content;
     float: left;
     margin-left: 40px;
+    color: #949494;
 }
 
 .swipe-container{
@@ -38,7 +46,7 @@
     margin-right: auto; 
     max-width: 500px;
     margin-top: 5%;
-    box-shadow: 2px 2px 3px #ccc;
+    /* box-shadow: 2px 2px 3px #ccc; */
     border-radius: 10px;
 }
 
@@ -47,10 +55,20 @@
     margin-left: 25px;
     margin-top: 5px;
     margin-bottom: 6px;
-    border: 1px solid #f1f1f1; 
+    border: 1px solid #1b1b1b; 
 }
 
 .swipe-content-footer{
+    margin-top: 30px;
     height: 10px;
     text-align: center;
+}
+
+.spinContainer{
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    max-width: 500px;
+    margin-top: 5%;
 }

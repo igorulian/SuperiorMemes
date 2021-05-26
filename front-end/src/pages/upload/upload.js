@@ -9,6 +9,7 @@ export default class Upload extends Component{
 
     state = {
         uploadingImageUrl: '',
+        uploadingImageType: '',
         sending: false
 
     }
@@ -18,7 +19,7 @@ export default class Upload extends Component{
             return <UploadMessage style={{fontSize: '30px'}}> Drag your image here</UploadMessage>
         }
         if(isDragReject){
-            return <UploadMessage type="error" style={{fontSize: '30px'}}> File not suported </UploadMessage>
+            return <UploadMessage type="error" style={{marginLeft:'35px'}}> File not suported </UploadMessage>
         }
 
         return <UploadMessage type="sucess"> Drop your image here </UploadMessage>
@@ -27,11 +28,9 @@ export default class Upload extends Component{
     showImageToBeSent  = async (file) => {
         try{
             const imageUrl = URL.createObjectURL(file[0])
-            this.setState({uploadingImageUrl: imageUrl})
+            this.setState({uploadingImageUrl: imageUrl, uploadingImageType: file[0].type})
 
             const image = new FormData()
-
-            console.log(file[0])
 
             image.append('file', file[0], file[0].name)
 
@@ -56,7 +55,7 @@ export default class Upload extends Component{
 
         if(!image){alert('You have to send a image to upload your meme'); this.resetVariables(); return;}
 
-        var imageUrl = ''
+        var imageUrl, mimetype = ''
 
         const token = localStorage.getItem('token')
         const authorizaton = {
@@ -68,6 +67,7 @@ export default class Upload extends Component{
         await api.post(`/upload/image`,image,authorizaton)
         .then(res => {
             imageUrl = res.data.location
+            mimetype = res.data.mimetype
         })
         .catch(erro => {
             console.log(erro.response.data.error)
@@ -75,11 +75,12 @@ export default class Upload extends Component{
             this.resetVariables()
         })
 
-        if(imageUrl === ''){alert('Error sending image, try again later'); this.resetVariables(); return;}
+        if(!imageUrl || !mimetype){alert('Error sending image, try again later'); this.resetVariables(); return;}
 
         const meme = {
             imageUrl,
-            description
+            mimetype,
+            description,
         }
 
         console.log(meme)
@@ -99,7 +100,7 @@ export default class Upload extends Component{
     }
 
     resetVariables = () => {
-        this.setState({uploadingImageUrl: '',uploadedImage: '', uploadedImageUrl: '', sending: false})
+        this.setState({uploadingImageUrl: '',uploadingImageType: '', uploadedImage: '', sending: false})
     }
 
     resetLoading = () => {
@@ -116,7 +117,7 @@ export default class Upload extends Component{
             <div className="page">
                 <h1> Upload </h1>
                 <div className="container-upload-image">
-                    <Dropzone accept="image/*" onDropAccepted={(file) => this.showImageToBeSent(file)}>
+                    <Dropzone accept={"image/*","video/*"} onDropAccepted={(file) => this.showImageToBeSent(file)}>
                         { ({getRootProps, getInputProps, isDragActive, isDragReject}) => (
                             this.state.uploadingImageUrl === '' ?
                             <DropContainer {...getRootProps()}
@@ -133,7 +134,11 @@ export default class Upload extends Component{
                             : 
                             <div>
                                 <button className="btnCancelarEnvioImagem" style={{marginRight: '0px'}} onClick={() => this.cancelImageUpload()}>x </button>
+                                { this.state.uploadingImageType.includes('video') ?
+                                <iframe alt="Imagem a ser enviada" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
+                                :
                                 <img alt="Imagem a ser enviada" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
+                                }
                             </div>
                         )}
                     </Dropzone>
