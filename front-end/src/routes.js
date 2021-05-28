@@ -5,6 +5,7 @@ import Main from './pages/main/main.js'
 import Upload from './pages/upload/upload'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
+import Profile from './pages/profile/profile'
 
 const PrivateRoute = props => {
     const vT = localStorage.getItem("token")
@@ -16,6 +17,7 @@ export default function MainRoutes(){
         <Routes>
             <PrivateRoute path="/" element={<Main/>} />
             <PrivateRoute path="/upload" element={<Upload/>} />
+            <PrivateRoute path="/profile" element={<Profile/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
         </Routes>
