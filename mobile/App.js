@@ -50,7 +50,7 @@ export default class Exemple extends Component {
             cards={this.state.meme}
             renderCard={(card) => {
 
-              const playNow = this.state.meme.indexOf(card) === this.state.currentCard ? true : false
+              const playNow = this.state.meme.indexOf(card) === this.state.currentCard ? false : true
               
               console.log(`IOF: ${this.state.meme.indexOf(card)} | CC: ${this.state.currentCard} | PNW: ${playNow}`)
 
@@ -58,7 +58,7 @@ export default class Exemple extends Component {
                     <View style={styles.card}>
                           {
                             card.mimetype.includes('video') ?
-                            <Video repeat={true} style={styles.memeContent} paused={true} controls={true} source={{
+                            <Video repeat={true} style={styles.memeContent} paused={playNow} controls={true} source={{
                               uri: card.imageUrl
                             }}/>
                         
