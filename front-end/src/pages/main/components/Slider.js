@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import api from '../../../services/api'
 import ReactLoading from 'react-loading';
 
-export default class Slider extends Component{
+export default class Slider extends Component{                 // Funny Duck?
 
     state = {
         meme: [],
@@ -21,33 +21,23 @@ export default class Slider extends Component{
     loadRequests = async() => {
         try{
             const token = localStorage.getItem('token')
-            if(token){
-                const authorizaton = {
-                    headers: {
-                    'Authorization': `Bearer ${token}` 
-                    }
-                }
-    
-                const response = await api.get(`/list`,authorizaton)
-                
-                this.setState({meme: response.data})
 
-            }else{
-
-                var ratedMemes = []
-
-                const ratedMemesLocal = localStorage.getItem('guestRatedMemes')
-                if(ratedMemesLocal){
-                    ratedMemes = JSON.parse(ratedMemesLocal)
-                }
-
-                const req = {
-                    ratedMemes
-                }
-                
-                const response = await api.post(`/guest/list`,req, {})
-                this.setState({meme: response.data})
+            if(!token){
+                await this.guestLoadRequest()
+                return
             }
+
+            const authorizaton = {
+                headers: {
+                'Authorization': `Bearer ${token}` 
+                }
+            }
+
+            const response = await api.get(`/list`,authorizaton)
+            
+            this.setState({meme: response.data})
+
+
         }catch(err){
             console.log("Erro ao carregar memes")
             console.log(err)
@@ -55,9 +45,26 @@ export default class Slider extends Component{
         }
     }
 
+
+    guestLoadRequest = async () => {
+        var ratedMemes = []
+
+        const ratedMemesLocal = localStorage.getItem('guestRatedMemes')
+
+        if(ratedMemesLocal)
+            ratedMemes = JSON.parse(ratedMemesLocal)
+        
+
+        const req = {
+            ratedMemes
+        }
+        
+        const response = await api.post(`/guest/list`,req, {})
+        this.setState({meme: response.data})
+    }
+
     onSwipe = async (direction, memeobj) => {
-        var rate = 0
-        direction === 'right' ? rate = 1 : rate = 0
+        const rate = direction === 'right' ? 1 :  0
 
         const memeid = memeobj._id
 
@@ -74,7 +81,9 @@ export default class Slider extends Component{
             if(rateMemesLocal){
                 newReateMemesLocal = rateMemesLocal
             }
-            newReateMemesLocal.push(memeid)
+
+            console.log({memeid,rate})
+            newReateMemesLocal.push({memeid,rate})
             localStorage.setItem('guestRatedMemes',JSON.stringify(newReateMemesLocal))
 
             

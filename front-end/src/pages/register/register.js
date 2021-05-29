@@ -29,6 +29,8 @@ export default class Register extends Component{
             alert('Passwords do not match ')
         }
 
+        // pegar os memes ja visto do localStorage e passar para a conta do usuario
+
 
         this.setState({loading: true})
         this.requestRegister(user,email,pass)

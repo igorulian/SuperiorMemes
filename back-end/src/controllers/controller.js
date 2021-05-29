@@ -38,9 +38,14 @@ module.exports = {
             const memesDidntRateYet = []
 
             memes.forEach(meme => {
-                if(!ratedMemes.includes(meme._id.toString())){
+                var alreadyRate = false
+                ratedMemes.forEach(ratedMeme => {
+                    if(ratedMeme.memeid.toString() === meme._id.toString())
+                        alreadyRate = true     
+                })
+
+                if(!alreadyRate)
                     memesDidntRateYet.push(meme)
-                }
             });
 
             return res.json(memesDidntRateYet)

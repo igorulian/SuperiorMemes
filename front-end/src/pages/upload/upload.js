@@ -55,8 +55,6 @@ export default class Upload extends Component{
 
         if(!image){alert('You have to send a image to upload your meme'); this.resetVariables(); return;}
 
-        var imageUrl, mimetype = ''
-
         const token = localStorage.getItem('token')
         const authorizaton = {
             headers: {
@@ -64,16 +62,7 @@ export default class Upload extends Component{
             }
         }
 
-        await api.post(`/upload/image`,image,authorizaton)
-        .then(res => {
-            imageUrl = res.data.location
-            mimetype = res.data.mimetype
-        })
-        .catch(erro => {
-            console.log(erro.response.data.error)
-            alert(erro.response.data.error)
-            this.resetVariables()
-        })
+        const {imageUrl, mimetype} = await this.uploadImage(image,authorizaton)
 
         if(!imageUrl || !mimetype){alert('Error sending image, try again later'); this.resetVariables(); return;}
 
@@ -99,6 +88,23 @@ export default class Upload extends Component{
         this.resetVariables()
     }
 
+    uploadImage = async (image, authorizaton) => {
+        var imageUrl, mimetype = ''
+
+        await api.post(`/upload/image`,image,authorizaton)
+        .then(res => {
+            imageUrl = res.data.location
+            mimetype = res.data.mimetype
+        })
+        .catch(erro => {
+            console.log(erro.response.data.error)
+            alert(erro.response.data.error)
+            this.resetVariables()
+        })
+
+        return {imageUrl, mimetype}
+    }
+
     resetVariables = () => {
         this.setState({uploadingImageUrl: '',uploadingImageType: '', uploadedImage: '', sending: false})
     }
@@ -117,7 +123,7 @@ export default class Upload extends Component{
             <div className="page">
                 <h1> Upload </h1>
                 <div className="container-upload-image">
-                    <Dropzone accept={"image/*","video/*"} onDropAccepted={(file) => this.showImageToBeSent(file)}>
+                    <Dropzone accept={["image/*","video/*"]} onDropAccepted={(file) => this.showImageToBeSent(file)}>
                         { ({getRootProps, getInputProps, isDragActive, isDragReject}) => (
                             this.state.uploadingImageUrl === '' ?
                             <DropContainer {...getRootProps()}
