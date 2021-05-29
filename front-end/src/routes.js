@@ -15,7 +15,7 @@ const PrivateRoute = props => {
 export default function MainRoutes(){
     return (
         <Routes>
-            <PrivateRoute path="/" element={<Main/>} />
+            <Route path="/" element={<Main/>} />
             <PrivateRoute path="/upload" element={<Upload/>} />
             <PrivateRoute path="/profile" element={<Profile/>} />
             <Route path="/login" element={<Login/>} />

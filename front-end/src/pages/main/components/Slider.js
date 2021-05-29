@@ -21,17 +21,36 @@ export default class Slider extends Component{
     loadRequests = async() => {
         try{
             const token = localStorage.getItem('token')
-            const authorizaton = {
-                headers: {
-                'Authorization': `Bearer ${token}` 
+            if(token){
+                const authorizaton = {
+                    headers: {
+                    'Authorization': `Bearer ${token}` 
+                    }
                 }
-            }
+    
+                const response = await api.get(`/list`,authorizaton)
+                
+                this.setState({meme: response.data})
 
-            const response = await api.get(`/list`,authorizaton)
-            
-            this.setState({meme: response.data})
-        }catch{
+            }else{
+
+                var ratedMemes = []
+
+                const ratedMemesLocal = localStorage.getItem('guestRatedMemes')
+                if(ratedMemesLocal){
+                    ratedMemes = JSON.parse(ratedMemesLocal)
+                }
+
+                const req = {
+                    ratedMemes
+                }
+                
+                const response = await api.post(`/guest/list`,req, {})
+                this.setState({meme: response.data})
+            }
+        }catch(err){
             console.log("Erro ao carregar memes")
+            console.log(err)
             alert("Erro ao carregar memes")
         }
     }
@@ -47,6 +66,22 @@ export default class Slider extends Component{
             headers: {
             'Authorization': `Bearer ${token}` 
             }
+        }
+
+        if(!token){
+            var newReateMemesLocal = []
+            const rateMemesLocal = JSON.parse(localStorage.getItem('guestRatedMemes'))
+            if(rateMemesLocal){
+                newReateMemesLocal = rateMemesLocal
+            }
+            newReateMemesLocal.push(memeid)
+            localStorage.setItem('guestRatedMemes',JSON.stringify(newReateMemesLocal))
+
+            
+            if(this.state.meme.indexOf(memeobj) <= 0)
+                this.loadRequests()
+
+            return
         }
 
         await api.post(`/rate/${memeid}/${rate}`,{},authorizaton)

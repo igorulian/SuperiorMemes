@@ -14,7 +14,7 @@ const AuthController = require('./src/controllers/authController')
 
 routes.post('/register', AuthController.register)
 routes.post('/login', AuthController.login)
-routes.get('/guest/list', Controller.guestList)
+routes.post('/guest/list', Controller.guestList)
 
 routes.use(authMiddleware)
 
