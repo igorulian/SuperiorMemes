@@ -101,6 +101,10 @@ export default class Exemple extends Component {
             <Text style={styles.uploadButtonTxt}>Upload Meme</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity style={styles.likedMemesButton} title="TESTE">
+            <Text style={styles.uploadButtonTxt}>Liked Memes</Text>
+          </TouchableOpacity>
+
             </Swiper>
       </SafeAreaView>
     ) : (
@@ -196,6 +200,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     position: 'absolute',
     right: 0
+  },
+  likedMemesButton: {
+    height: 50,
+    width: 110,
+    margin: 10,
+    borderColor: '#006eff',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    position: 'absolute',
+    left: 0
   },
   uploadButtonTxt:{
     color: '#fff'

@@ -8,9 +8,10 @@ const User = mongoose.model('User')
 
 
 function generateToken(params = {}){
-    return jwt.sign(params, authConfig.secret, {
-        expiresIn: 30 * 86400
-    })
+    return jwt.sign(params, authConfig.secret)
+    // return jwt.sign(params, authConfig.secret, {
+    //     expiresIn: 60 * 86400
+    // })
 }
 
 

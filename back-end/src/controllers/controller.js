@@ -6,12 +6,10 @@ const User = mongoose.model('User')
 module.exports = {
 
     async list(req,res){
-        try{
+        try{      
             const userid = req.tokenUserId
             
-            // const memes = await Meme.paginate({}, {page, limit:40}) 
             const memes = await Meme.find().sort({likes: -1}).select('+alreadyRate')
-            // const memes = await Meme.find().select('+alreadyRate')
 
             const memesDidntRateYet = []
 
@@ -22,6 +20,27 @@ module.exports = {
                     memesDidntRateYet.push(meme)
                 }
                 
+            });
+
+            return res.json(memesDidntRateYet)
+        }catch(err){
+            console.log(err)
+            return res.status(400).send({error: 'Error in list memes'})
+        }
+    },
+    async guestList(req,res){
+        try{      
+            const {ratedMemes} = req.body
+            console.log(ratedMemes)
+            
+            const memes = await Meme.find().sort({likes: -1})
+
+            const memesDidntRateYet = []
+
+            memes.forEach(meme => {
+                if(!ratedMemes.includes(meme._id.toString())){
+                    memesDidntRateYet.push(meme)
+                }
             });
 
             return res.json(memesDidntRateYet)
