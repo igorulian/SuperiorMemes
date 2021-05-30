@@ -25,8 +25,10 @@ export default class Register extends Component{
             alert('Fill in all fields ')
             return
         }
+
         if(!(pass === pass2)){
             alert('Passwords do not match ')
+            return
         }
 
         // pegar os memes ja visto do localStorage e passar para a conta do usuario
@@ -37,10 +39,14 @@ export default class Register extends Component{
     }
 
     requestRegister = async (user, email, password) => {
+
+        const localRatedMemes = JSON.parse(localStorage.getItem('guestRatedMemes'))
+
         const req = {
             user,
             email,
-            password
+            password,
+            localRatedMemes
         }
 
         await api.post(`/register`, req)

@@ -118,7 +118,7 @@ export default class Slider extends Component{                 // Funny Duck?
         ) : (
             <>
             {this.state.meme.length <= 0 && 
-                <h1 style={{fontSize: '40px', marginTop: '200px'}}> Você ja viu todos os memes disponíveis por enquanto :) </h1>
+                <h1 style={{fontSize: '40px', marginTop: '200px'}}> You have seen all the memes available so far  :) </h1>
             }
 
             {this.state.meme.map(meme => (
@@ -128,11 +128,11 @@ export default class Slider extends Component{                 // Funny Duck?
                         <div className="swipe-content">
 
                             {meme.mimetype.includes('video') ?
-                                <iframe title="Video"
+                                <iframe title={meme._id}
                                 src={meme.imageUrl}>
                                 </iframe> 
                             :
-                                <img src={meme.imageUrl}/> 
+                                <img src={meme.imageUrl} alt="Meme content"/> 
                             
                             }
 

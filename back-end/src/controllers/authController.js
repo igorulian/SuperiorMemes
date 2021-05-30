@@ -5,13 +5,27 @@ const jwt = require('jsonwebtoken')
 const authConfig = require('../config/auth')
 
 const User = mongoose.model('User')
+const Meme = mongoose.model('Meme')
 
 
 function generateToken(params = {}){
     return jwt.sign(params, authConfig.secret)
-    // return jwt.sign(params, authConfig.secret, {
-    //     expiresIn: 60 * 86400
-    // })
+}
+
+
+async function transferRateMemesFromLocalToUserDB(localRatedMemes,user) {
+    const likedMemes = []
+
+    localRatedMemes.forEach(async (meme) => {
+
+        if(meme.rate === 1)
+            likedMemes.push(meme.memeid)
+
+        await Meme.findByIdAndUpdate(meme.memeid, {$addToSet: {alreadyRate: user._id}})
+    });
+
+    await User.findByIdAndUpdate(user._id,{likedMemes})
+
 }
 
 
@@ -19,17 +33,26 @@ function generateToken(params = {}){
 module.exports = {
     async register(req,res){
         try{
-            const {email} = req.body
+            const {email,user,password,localRatedMemes} = req.body
             
             if(await User.findOne({email}))
                 return res.status(400).send({error: 'User already exists'})
         
-            const user = await User.create(req.body)
+            const newUser = {
+                user,
+                email,
+                password
+            }
 
-            user.password = undefined
+            const newCreateduser = await User.create(newUser)
+            newCreateduser.password = undefined
+
+            if(localRatedMemes)
+                await transferRateMemesFromLocalToUserDB(localRatedMemes,newCreateduser)
+            
 
             return res.json({
-                user,
+                newCreateduser,
                 token: generateToken({id: user.id})
             })
             
