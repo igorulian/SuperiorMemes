@@ -1,0 +1,50 @@
+.meme-container{
+    background-color: #282a2e;
+    min-width: 300px;
+    width: fit-content;
+    min-height: 400px;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 3px solid #282a2e;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px 3px #1b1b1b;
+}
+
+
+.meme-content img{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.meme-content video{
+    width: 300px;
+    height: 300px;
+    border: 0;
+}
+
+
+
+.meme-content-button-like{
+    width: fit-content;
+    height: fit-content;
+    float: right;
+    margin-right: 15px;
+    color: #949494;
+}
+
+.meme-content-button-dislike{
+    width: fit-content;
+    height: fit-content;
+    float: left;
+    margin-left: 15px;
+    color: #949494;
+}
+
+.meme-content-footer{
+    margin-top: 30px;
+    height: 10px;
+    text-align: center;
+}

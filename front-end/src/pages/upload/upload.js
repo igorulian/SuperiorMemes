@@ -139,11 +139,11 @@ export default class Upload extends Component{
                             </DropContainer>
                             : 
                             <div>
-                                <button className="btnCancelarEnvioImagem" style={{marginRight: '0px'}} onClick={() => this.cancelImageUpload()}>x </button>
+                                <button className="btnCancelarEnvioImagem" style={{marginRight: '0px', color: '#333'}} onClick={() => this.cancelImageUpload()}>x </button>
                                 { this.state.uploadingImageType.includes('video') ?
-                                <iframe title="Video a ser enviado" alt="Video a ser enviado" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
+                                <iframe title="Video a ser enviado" alt="Video a ser enviado" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #faf601', borderRadius: '5px'}}/>
                                 :
-                                <img alt="Imagem a ser enviada" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #006eff', borderRadius: '5px'}}/>
+                                <img alt="Imagem a ser enviada" src={this.state.uploadingImageUrl} style={{width: '280px', height: '280px', border: '2px solid #faf601', borderRadius: '5px'}}/>
                                 }
                             </div>
                         )}
@@ -152,7 +152,7 @@ export default class Upload extends Component{
                         <p> Description: </p>
                         <input ref={input => this.memeDescriptionInput = input} />
                     </div>
-                    <button className="btnUpload" onClick={() => this.uploadMeme()}> {this.state.sending === false ? <b>Send meme</b> : <b>Sending...</b>} </button>
+                    <button className="btnUploadMeme" onClick={() => this.uploadMeme()}> {this.state.sending === false ? <b>Send meme</b> : <b>Sending...</b>} </button>
                 </div>
 
             </div>

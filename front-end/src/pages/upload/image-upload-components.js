@@ -12,7 +12,7 @@ const dragReject = css`
 export const DropContainer = styled.div.attrs({
     className: 'dropzone'
 })`
-    border: 2px dashed #006eff;
+    border: 2px dashed #faf601;
     border-radius: 4px;
     cursor: pointer;
     transition: height 0.2s ease;
@@ -26,7 +26,7 @@ export const DropContainer = styled.div.attrs({
     ${props => props.isDragReject && dragReject}
 `
 const messageColors = {
-    default: '#006eff',
+    default: '#faf601',
     error: '#e57878',
     sucess: '#78e5e5'
 }

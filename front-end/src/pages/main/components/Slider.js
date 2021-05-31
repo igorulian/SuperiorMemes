@@ -10,7 +10,8 @@ export default class Slider extends Component{                 // Funny Duck?
 
     state = {
         meme: [],
-        isLoading: true
+        isLoading: true,
+        currentCardIndex: 0
     }
 
     async componentDidMount() {
@@ -64,6 +65,10 @@ export default class Slider extends Component{                 // Funny Duck?
     }
 
     onSwipe = async (direction, memeobj) => {
+        this.setState({currentCardIndex: this.state.currentCardIndex + 1})
+        console.log(`carIndex: ${this.state.currentCardIndex}`)
+        console.log(`Meme Index: ${this.state.meme.indexOf(memeobj)}`)
+
         const rate = direction === 'right' ? 1 :  0
 
         const memeid = memeobj._id
@@ -125,12 +130,15 @@ export default class Slider extends Component{                 // Funny Duck?
                 <div className="swipe-container" key={meme._id}>
                     
                     <TinderCard onSwipe={(direction, memeobj=meme) => {this.onSwipe(direction,memeobj)}} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']}>
-                        <div className="swipe-content">
+                        <div className="swipe-content"> 
+
+                            {console.log(`MEME ${this.state.meme.indexOf(meme)} || CARD  ${this.state.currentCardIndex}`)}
 
                             {meme.mimetype.includes('video') ?
-                                <iframe title={meme._id}
-                                src={meme.imageUrl}>
-                                </iframe> 
+                                <video 
+                                src={meme.imageUrl}
+                                autoPlay={this.state.meme.indexOf(meme) === this.state.currentCardIndex}
+                                controls={true}/>
                             :
                                 <img src={meme.imageUrl} alt="Meme content"/> 
                             
@@ -141,14 +149,14 @@ export default class Slider extends Component{                 // Funny Duck?
                             <div className="swipe-content-footer">
                             
                                 <div className="swipe-content-button-like">
-                                    <IconContext.Provider value={{color: "#006eff", size: '40'}}>
+                                    <IconContext.Provider value={{color: "#faf601", size: '40'}}>
                                         <AiContext.AiFillLike/>
                                     </IconContext.Provider>
                                     <p>{meme.likes}</p>
                                 </div>
 
                                 <div className="swipe-content-button-dislike">
-                                    <IconContext.Provider value={{color: "#006eff", className: "global-class-name", size: '40'}}>
+                                    <IconContext.Provider value={{color: "#faf601", className: "global-class-name", size: '40'}}>
                                         <AiContext.AiOutlineDislike/>
                                     </IconContext.Provider>
                                     <p>{meme.dislikes}</p>

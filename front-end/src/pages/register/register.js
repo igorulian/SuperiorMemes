@@ -10,7 +10,7 @@ export default class Register extends Component{
     }
 
 
-    register = () => {
+    register = async () => {
         const user = this.userInput.value
         const email = this.emailInput.value
         const pass = this.passInput.value
@@ -33,7 +33,10 @@ export default class Register extends Component{
 
 
         this.setState({loading: true})
-        this.requestRegister(user,email,pass)
+        
+        await this.requestRegister(user,email,pass)
+
+        this.setState({loading: false})
     }
 
     requestRegister = async (user, email, password) => {
@@ -52,14 +55,12 @@ export default class Register extends Component{
         .then(response => {
             const token = response.data.token
             localStorage.setItem("token", token)
-
+            localStorage.setItem('guestRatedMemes', null)
             this.redirectToDashboard()
         })
         .catch(erro => {
             alert(erro.response.data.error)
         })
-
-        this.setState({loading: false})
     }
 
     redirectToDashboard = () =>{

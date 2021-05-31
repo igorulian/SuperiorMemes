@@ -10,10 +10,6 @@
     margin-top: 150px;
 }
 
-.container-upload-image button{
-    margin-right: 85px;
-}
-
 .meme-description{
     align-items: center;
     justify-content: center;
@@ -23,7 +19,7 @@
 .meme-description p{
     font-family: 'Amatic SC', cursive;
     font-size: 28px;
-    color: #006eff;
+    color: #faf601;
     float: left;
 }
 
@@ -32,10 +28,10 @@
     padding: 4px;
     width: 190px;
     float: right;
-    border-color: #006eff;
+    border-color: #faf601;
     border-width: 1px;
     border-radius: 10px;
-    color: #006eff;
+    color: #faf601;
     background-color: #2a2a2e;
     padding-left: 10px;
 }
@@ -45,7 +41,7 @@
     height: 30px;
     float: right;
     border-radius: 20px;
-    background-color: #006eff;
+    background-color: #faf601;
     border-style: none;
     color: #fff;
     text-align: center;
@@ -56,5 +52,18 @@
     cursor: pointer;
 }
 .btnCancelarEnvioImagem:hover{
-    background-color: #006effb2;
+    background-color: #faf601;
+}
+
+.btnUploadMeme{
+    border-style: none;
+    background-color: #0000;
+    border: 2px solid #faf601;
+    color:#faf601;
+    padding: 5px;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: 'Amatic SC', cursive;
 }

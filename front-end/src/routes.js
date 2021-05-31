@@ -6,6 +6,7 @@ import Upload from './pages/upload/upload'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
 import Profile from './pages/profile/profile'
+import LikedMemes from './pages/likedmemes/likedmemes'
 
 const PrivateRoute = props => {
     const vT = localStorage.getItem("token")
@@ -18,6 +19,7 @@ export default function MainRoutes(){
             <Route path="/" element={<Main/>} />
             <PrivateRoute path="/upload" element={<Upload/>} />
             <PrivateRoute path="/profile" element={<Profile/>} />
+            <PrivateRoute path="/liked" element={<LikedMemes/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
         </Routes>

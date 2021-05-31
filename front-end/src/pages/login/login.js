@@ -21,9 +21,8 @@ export default class Login extends Component{
 
         this.setState({loading: true})
 
-        // Request de Login
         await this.requestLogin(email, pass)
-
+        this.setState({loading: false})
     }
 
     requestLogin = async (email, password) => {
@@ -41,7 +40,6 @@ export default class Login extends Component{
             alert(erro.response.data.error)
         })
 
-        this.setState({loading: false})
     }
 
     redirectToDashboard = () =>{
@@ -65,7 +63,6 @@ export default class Login extends Component{
 
                     <div className="register-txt">
                         <Link to="/register"> <p>Register now</p> </Link>
-                        {/* <p> a</p> */}
                     </div>
                     
                 </div>
