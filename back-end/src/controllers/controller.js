@@ -15,6 +15,8 @@ module.exports = {
 
             memes.forEach(meme => {
 
+                if(meme.alreadyRate.includes(null)) return
+
                 if(!meme.alreadyRate.includes(userid)){
                     meme.alreadyRate = null
                     memesDidntRateYet.push(meme)
@@ -97,7 +99,8 @@ module.exports = {
 
             return res.json(meme)
         
-        }catch{
+        }catch(err){
+            console.log(err)
             return res.status(400).send({error: 'Error in upload meme'})
         }
     },
@@ -113,6 +116,9 @@ module.exports = {
             const memeid = req.params.memeid 
             const rate = req.params.rate 
             const userid = req.tokenUserId
+
+            if(!userid)
+                return res.status(400).send({error: 'Error in identify userid'})
 
             const meme = await Meme.findById(memeid).select('+alreadyRate')
 

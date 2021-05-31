@@ -13,13 +13,11 @@ const memeSchema = new mongoose.Schema({
     },
     imageUrl:{
         type:String,
-        required: true,
-        default: ''
+        required: true
     },
     mimetype:{
         type: String,
-        require: true,
-        default: ''
+        require: true
     },
     description:{
         type:String,

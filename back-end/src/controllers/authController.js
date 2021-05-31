@@ -13,18 +13,35 @@ function generateToken(params = {}){
 }
 
 
-async function transferRateMemesFromLocalToUserDB(localRatedMemes,user) {
-    const likedMemes = []
+async function transferRateMemesFromLocalToUserDB(localRatedMemes,newuser) {
+    try{
+        const likedMemes = []
 
-    localRatedMemes.forEach(async (meme) => {
+        localRatedMemes.forEach(async (meme) => {
 
-        if(meme.rate === 1)
-            likedMemes.push(meme.memeid)
+            const memeDB = await Meme.findById(meme.memeid).select('+alreadyRate')
 
-        await Meme.findByIdAndUpdate(meme.memeid, {$addToSet: {alreadyRate: user._id}})
-    });
+            let {likes,dislikes,alreadyRate} = memeDB
 
-    await User.findByIdAndUpdate(user._id,{likedMemes})
+            if(meme.rate === 1){
+                likedMemes.push(meme.memeid)
+                likes++
+            }
+
+            if(meme.rate === 0)
+                dislikes++
+            
+            alreadyRate.push(newuser._id)
+
+            await Meme.findByIdAndUpdate(meme.memeid, {alreadyRate,likes,dislikes})
+
+        });
+        
+
+        await User.findByIdAndUpdate(newuser._id,{likedMemes})
+    }catch{
+        console.log('Erro ao transferir dados')
+    }
 
 }
 
@@ -47,13 +64,15 @@ module.exports = {
             const newCreateduser = await User.create(newUser)
             newCreateduser.password = undefined
 
+            console.log('localRatedMemes: ' + localRatedMemes)
+
             if(localRatedMemes)
                 await transferRateMemesFromLocalToUserDB(localRatedMemes,newCreateduser)
             
 
             return res.json({
                 newCreateduser,
-                token: generateToken({id: user.id})
+                token: generateToken({id: newCreateduser.id})
             })
             
         } catch (erru){

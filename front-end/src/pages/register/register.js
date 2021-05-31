@@ -31,8 +31,6 @@ export default class Register extends Component{
             return
         }
 
-        // pegar os memes ja visto do localStorage e passar para a conta do usuario
-
 
         this.setState({loading: true})
         this.requestRegister(user,email,pass)
@@ -41,6 +39,7 @@ export default class Register extends Component{
     requestRegister = async (user, email, password) => {
 
         const localRatedMemes = JSON.parse(localStorage.getItem('guestRatedMemes'))
+
 
         const req = {
             user,
