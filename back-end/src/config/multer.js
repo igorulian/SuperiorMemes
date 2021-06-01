@@ -3,7 +3,9 @@ const path = require('path')
 const crypto = require('crypto')
 const aws = require('aws-sdk')
 const multers3 = require('multer-s3')
-require('dotenv')
+require('dotenv').config()
+
+// console.log(new aws.S3())
 
 const storageType = {
     local: multer.diskStorage({
@@ -51,7 +53,6 @@ module.exports = {
             'image/gif',
             "video/wav",
             "video/mp4"
-
         ]
 
         if(allowedMimes.includes(file.mimetype)){
