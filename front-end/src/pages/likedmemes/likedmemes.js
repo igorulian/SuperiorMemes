@@ -42,6 +42,10 @@ export default class LikedMemes extends Component{
 
                 <Loading isLoading={this.state.isLoading}/>
 
+                {!this.state.isLoading && this.state.memes.length <= 0 &&
+                <h1 style={{fontSize: '40px',position: 'absolute', marginRight: 'auto', marginLeft: 'auto', left: 0, right: 0, marginTop:'300px'}}> You haven't liked any meme yet :/ </h1>
+                }
+
                 <h1> Liked Memes </h1>
                 <BackButton/>
 
