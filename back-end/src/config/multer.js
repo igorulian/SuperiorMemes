@@ -13,8 +13,7 @@ const storageType = {
         filename: (req,file,cb) => {
             crypto.randomBytes(16, (err, hash) => {
                 if( err ) cb(err)
-
-                // file.key = `${req.tokenUserId}-${hash.toString('hex')}`
+                
                 const filename = `${req.tokenUserId}-${hash.toString('hex')}`
 
                 cb(null,filename)

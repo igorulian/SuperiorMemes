@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../styles.css'
 import './login.css'
 import api from '../../services/api'
+import BackButton from '../components/backbutton'
 
 export default class Login extends Component{
 
@@ -49,6 +50,7 @@ export default class Login extends Component{
     render(){
         return(   
             <div className="page">
+                <BackButton/>
 
                 <h2 className="login-title"> Login </h2>
 

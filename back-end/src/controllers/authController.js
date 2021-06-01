@@ -21,6 +21,8 @@ async function transferRateMemesFromLocalToUserDB(localRatedMemes,newuser) {
 
             const memeDB = await Meme.findById(meme.memeid).select('+alreadyRate')
 
+            if(!memeDB) return
+
             let {likes,dislikes,alreadyRate} = memeDB
 
             if(meme.rate === 1){
@@ -82,10 +84,10 @@ module.exports = {
 
     async login(req,res){
         try{
-            const {password} = req.body
-            const username = req.body.user
+            const {password,email} = req.body
+            // const username = req.body.user
 
-            const user = await User.findOne({username}).select('+password')
+            const user = await User.findOne({email}).select('+password')
 
             if(!user) 
                 return res.status(400).send({error: 'Usuário não encontrado'})

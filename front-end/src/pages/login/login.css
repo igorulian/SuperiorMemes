@@ -17,10 +17,10 @@
     padding: 4px;
     width: 250px;
     float: right;
-    border-color: #006eff;
+    border-color: #faf601;
     border-width: 1px;
     border-radius: 10px;
-    color: #006eff;
+    color: #faf601;
     padding-left: 10px;
     margin-bottom: 30px;
     background-color: #2a2a2e;
@@ -29,14 +29,14 @@
 
 .login-container p{
     width: fit-content;
-    color: #006eff;
+    color: #faf601;
     font-size: 30px;
     font-family: 'Amatic SC', cursive;
 }
 
 .login-title {
     padding-top: 80px;
-    color: #006eff;
+    color: #faf601;
     font-family: 'Amatic SC', cursive;
     font-size: 50px;
 }
@@ -44,8 +44,8 @@
 .btnLogin{
     border-style: none;
     background-color: #0000;
-    border: 2px solid #006eff;
-    color:#006eff;
+    border: 2px solid #faf601;
+    color:#faf601;
     padding: 5px;
     border-radius: 5px; 
     float: right;
@@ -69,8 +69,8 @@
 }
 
 .btnLogin:hover{
-    background-color: #006eff;
-    border: 2px solid #006eff;
+    background-color: #faf601;
+    border: 2px solid #faf601;
     color:#fff;
 }
 

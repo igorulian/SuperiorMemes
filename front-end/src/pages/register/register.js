@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../../styles.css'
 import './register.css'
 import api from '../../services/api'
+import BackButton from '../components/backbutton'
 
 export default class Register extends Component{
 
@@ -40,9 +41,7 @@ export default class Register extends Component{
     }
 
     requestRegister = async (user, email, password) => {
-
         const localRatedMemes = JSON.parse(localStorage.getItem('guestRatedMemes'))
-
 
         const req = {
             user,
@@ -70,6 +69,7 @@ export default class Register extends Component{
     render(){
         return(   
             <div className="page">
+                <BackButton/>
 
                 <h2 className="login-title"> Register </h2>
 
