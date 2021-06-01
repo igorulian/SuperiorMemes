@@ -11,7 +11,6 @@ export default class MemeContainer extends Component{
 
 
     render(){
-        console.log(this.state.meme)
         return(
             <div className="meme-container">
                 <div className="meme-content">
@@ -20,7 +19,9 @@ export default class MemeContainer extends Component{
                     ? 
                         <video
                         src={this.state.meme.imageUrl}
-                        autoPlay={true}
+                        autoPlay={false}
+                        controls={true}
+                        color="#faf601"
                         />
                     :
                         <img src={this.state.meme.imageUrl} alt="Meme content"/> 

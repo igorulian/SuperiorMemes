@@ -1,51 +1,56 @@
 import React, {Component} from 'react';
 import './likedmemes.css'
 import MemeContainer from './components/memecontainer'
+import BackButton from '../components/backbutton'
+import Loading from '../components/loading'
+import api from '../../services/api'
 
 export default class LikedMemes extends Component{
 
     state = {
-        memes: [{
-            publisherName: "iguera",
-            publisherID: "60aac83e135daa2098b863f2",
-            imageUrl: "https://superior-memes.s3.sa-east-1.amazonaws.com/60ad2e88953a9a0b68b135df-5f41be32d17fdee7ef26ab32c90ff8e4",
-            mimetype: "video/mp4",
-            description: "COLEHOK K2222KKKK",
-            likes: 10,
-            dislikes: 20
-            },
-            {
-            publisherName: "iguera",
-            publisherID: "60aac83e135daa2098b863f2",
-            imageUrl: "https://superior-memes.s3.amazonaws.com/60aac83e135daa2098b863f2-d823cd3777d814f4485a197eae868ce8",
-            mimetype: "image/png",
-            description: "COLEHOK K2222KKKK",
-            likes: 10,
-            dislikes: 20
-            },
-            {
-            publisherName: "iguera",
-            publisherID: "60aac83e135daa2098b863f2",
-            imageUrl: "https://superior-memes.s3.sa-east-1.amazonaws.com/60ad2e88953a9a0b68b135df-5f41be32d17fdee7ef26ab32c90ff8e4",
-            mimetype: "video/mp4",
-            description: "COLEHOK K2222KKKK",
-            likes: 10,
-            dislikes: 20
-            },
-        ]
+        memes: [],
+        isLoading: true,
+    }
+
+    async componentDidMount(){
+        await this.requestLikes()
+        this.setState({isLoading: false})
+    }
+
+    requestLikes = async () =>{
+        try{
+            const token = localStorage.getItem('token')
+            
+            const authorizaton = {
+                headers: {
+                'Authorization': `Bearer ${token}` 
+                }
+            }
+
+            const response = await api.get(`/list/liked`,authorizaton)
+            this.setState({memes: response.data})
+
+        }catch(err){
+            console.log("Erro ao carregar memes")
+            alert("Erro ao carregar memes")
+        }
     }
 
     render(){
         return(
             <div className="page">
+
+                <Loading isLoading={this.state.isLoading}/>
+
                 <h1> Liked Memes </h1>
+                <BackButton/>
 
                 <div className="meme-list">
-                    {
-                    this.state.memes.map(meme => (
-                        <MemeContainer meme={meme}/>
-                    ))
-                    }
+
+                    {this.state.memes.map(meme => (
+                        <MemeContainer meme={meme} key={meme._id}/>
+                    ))}
+                    
                 </div>
             
 

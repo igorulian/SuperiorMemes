@@ -1,5 +1,19 @@
 .meme-list{
+    max-width: 1300px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
+    grid-gap: 1rem;
+    margin-top: 30px;
+}
+
+@media (min-width: 600px){
+    .meme-list {grid-template-columns: repeat(2, 1fr);}
+}
+
+@media (min-width: 900px){
+    .meme-list {grid-template-columns: repeat(3, 1fr);}
+}
+
+@media (min-width: 1200px){
+    .meme-list {grid-template-columns: repeat(4, 1fr);}
 }

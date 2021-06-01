@@ -4,6 +4,7 @@ import '../../styles.css'
 import {DropContainer,UploadMessage} from './image-upload-components.js'
 import Dropzone from 'react-dropzone'
 import api from '../../services/api'
+import BackButton from '../components/backbutton'
 
 export default class Upload extends Component{
 
@@ -121,6 +122,7 @@ export default class Upload extends Component{
     render(){
         return(   
             <div className="page">
+                <BackButton/>
                 <h1> Upload </h1>
                 <div className="container-upload-image">
                     <Dropzone accept={["image/*","video/*"]} onDropAccepted={(file) => this.showImageToBeSent(file)}>

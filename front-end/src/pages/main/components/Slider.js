@@ -4,7 +4,7 @@ import TinderCard from 'react-tinder-card'
 import * as AiContext from 'react-icons/ai'
 import { IconContext } from "react-icons";
 import api from '../../../services/api'
-import ReactLoading from 'react-loading';
+import Loading from '../../components/loading'
 
 export default class Slider extends Component{                 // Funny Duck?
 
@@ -116,13 +116,11 @@ export default class Slider extends Component{                 // Funny Duck?
     }
 
     render(){
-        return this.state.isLoading ? (
-            <div style={{marginLeft: '900px', marginTop: '200px'}}>
-                <ReactLoading type={'spin'} color={'#006eff'} height={'10%'} width={'10%'} />
-            </div>
-        ) : (
+        return (
             <>
-            {this.state.meme.length <= 0 && 
+            <Loading isLoading={this.state.isLoading}/>
+
+            {this.state.meme.length <= 0 && !this.state.isLoading && 
                 <h1 style={{fontSize: '40px', marginTop: '200px'}}> You have seen all the memes available so far  :) </h1>
             }
 
@@ -171,8 +169,8 @@ export default class Slider extends Component{                 // Funny Duck?
                     </TinderCard>
                 </div>
             ))}
-            </>
-        )
 
+        </>
+        )
     }
 }
