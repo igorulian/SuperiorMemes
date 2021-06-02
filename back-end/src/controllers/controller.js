@@ -33,7 +33,6 @@ module.exports = {
     async guestList(req,res){
         try{      
             const {ratedMemes} = req.body
-            console.log(ratedMemes)
             
             const memes = await Meme.find().sort({likes: -1}).select('+alreadyRate')
 
