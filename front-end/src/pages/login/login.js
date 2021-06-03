@@ -4,11 +4,17 @@ import '../../styles.css'
 import './login.css'
 import api from '../../services/api'
 import BackButton from '../components/backbutton'
+import AlertMessage from '../components/message-alert/message-alert'
 
 export default class Login extends Component{
 
     state = {
-        loading: false
+        loading: false,
+        alert: {
+            active: false,
+            message: 'sample message',
+            function: () => {}
+        }
     }
 
     login = async () => {
@@ -16,7 +22,7 @@ export default class Login extends Component{
         const pass = this.passInput.value
 
         if(!email || !pass){
-            alert('Fill in all fields ')
+            this.setState({alert: {active: true, type:'warning', message: 'Fill all the fields', function: this.setAlertToFalse}})
             return
         }
 
@@ -38,7 +44,7 @@ export default class Login extends Component{
             this.redirectToDashboard()
 
         }).catch(erro => {
-            alert(erro.response.data.error)
+            this.setState({alert: {active: true, type:'error', message: erro.response.data.error, function: this.setAlertToFalse}})
         })
 
     }
@@ -47,9 +53,14 @@ export default class Login extends Component{
         window.location.href = '/'
     }
 
+    setAlertToFalse = () => {
+        this.setState({alert: {active: false}})
+    }
+
     render(){
         return(   
             <div className="page">
+                <AlertMessage type={this.state.alert.type} alert={this.state.alert.active} message={this.state.alert.message} onOK={this.state.alert.function} />
                 <BackButton/>
 
                 <h2 className="login-title"> Login </h2>

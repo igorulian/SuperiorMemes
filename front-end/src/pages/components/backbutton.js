@@ -8,7 +8,7 @@ export default class BackButton extends Component{
 
     render(){
         return(
-            <Link to={'/'} style={{position: 'absolute', left: 0, top: 0, marginTop: '50px', marginLeft: '50px'}}>
+            <Link to={'/'} style={linkStyle}>
                 
                 <IconContext.Provider value={{color: "#faf601", size: '40'}}>
                     <FaArrowLeft/>
@@ -18,4 +18,12 @@ export default class BackButton extends Component{
         )
     }
 
+}
+
+const linkStyle = {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    marginTop: '50px',
+    marginLeft: '50px'
 }

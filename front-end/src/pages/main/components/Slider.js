@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import api from '../../../services/api'
 import Loading from '../../components/loading'
 
-export default class Slider extends Component{                 // Funny Duck?
+export default class Slider extends Component{         
 
     state = {
         meme: [],
@@ -39,10 +39,8 @@ export default class Slider extends Component{                 // Funny Duck?
             this.setState({meme: response.data})
 
 
-        }catch(err){
-            console.log("Erro ao carregar memes")
-            console.log(err)
-            alert("Erro ao carregar memes")
+        }catch(erro){
+            this.props.onError('Error loading memes')
         }
     }
 
@@ -102,7 +100,7 @@ export default class Slider extends Component{                 // Funny Duck?
         .then(req => { 
             console.log(req)
         }).catch(erro => {
-            console.log(erro.response.data.error)
+            this.props.onError('Error rating memes')
         })
 
         if(this.state.meme.indexOf(memeobj) <= 0)
@@ -115,11 +113,12 @@ export default class Slider extends Component{                 // Funny Duck?
         console.log(myIdentifier + ' left the screen')
     }
 
+
     render(){
         return (
             <>
             <Loading isLoading={this.state.isLoading}/>
-
+     
             {this.state.meme.length <= 0 && !this.state.isLoading && 
                 <h1 style={{fontSize: '40px', marginTop: '200px'}}> You have seen all the memes available so far  :) </h1>
             }

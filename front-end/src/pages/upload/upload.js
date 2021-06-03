@@ -5,14 +5,19 @@ import {DropContainer,UploadMessage} from './image-upload-components.js'
 import Dropzone from 'react-dropzone'
 import api from '../../services/api'
 import BackButton from '../components/backbutton'
+import AlertMessage from '../components/message-alert/message-alert'
 
 export default class Upload extends Component{
 
     state = {
         uploadingImageUrl: '',
         uploadingImageType: '',
-        sending: false
-
+        sending: false,
+        alert: {
+            active: false,
+            message: 'sample message',
+            function: () => {}
+        }
     }
 
     renderDrageMessage = (isDragActive, isDragReject) => {
@@ -38,7 +43,7 @@ export default class Upload extends Component{
             this.setState({uploadedImage: image})
 
         }catch{
-            alert('Error send preview image')
+            this.setState({alert: {active: true, message: 'Error in show meme preview', function: this.setAlertToFalse}})
         }
 
     }
@@ -54,7 +59,11 @@ export default class Upload extends Component{
         const image = this.state.uploadedImage
         const description = this.memeDescriptionInput.value
 
-        if(!image){alert('You have to send a image to upload your meme'); this.resetVariables(); return;}
+        if(!image){    
+            this.setState({alert: {active: true, message: 'You have to send a image to upload your meme', function: this.setAlertToFalse, type:'error'}})
+            this.resetVariables(); 
+            return;
+        }
 
         const token = localStorage.getItem('token')
         const authorizaton = {
@@ -65,15 +74,17 @@ export default class Upload extends Component{
 
         const {imageUrl, mimetype} = await this.uploadImage(image,authorizaton)
 
-        if(!imageUrl || !mimetype){alert('Error sending image, try again later'); this.resetVariables(); return;}
+        if(!imageUrl || !mimetype){
+            this.setState({alert: {active: true, message: 'Error sending image, try again later', function: this.setAlertToFalse}})
+            this.resetVariables(); 
+            return;
+        }
 
         const meme = {
             imageUrl,
             mimetype,
             description,
         }
-
-        console.log(meme)
 
         await api.post(`/upload`,meme,authorizaton)
         .then(res => {
@@ -82,12 +93,13 @@ export default class Upload extends Component{
         })
         .catch(erro => {
             console.log(erro.response.data.error)
-            alert(erro.response.data.error)
+            this.setState({alert: {active: true, message: erro.response.data.error, function: this.setAlertToFalse}})
             this.resetVariables();
         })
 
         this.resetVariables()
     }
+
 
     uploadImage = async (image, authorizaton) => {
         var imageUrl, mimetype = ''
@@ -99,7 +111,7 @@ export default class Upload extends Component{
         })
         .catch(erro => {
             console.log(erro.response.data.error)
-            alert(erro.response.data.error)
+            this.setState({alert: {active: true, message: erro.response.data.error, function: this.setAlertToFalse}})
             this.resetVariables()
         })
 
@@ -115,13 +127,21 @@ export default class Upload extends Component{
     }
 
     uploadSucessfull = () => {
-        alert('Upload Sucessfull!')
+        this.setState({alert: {active: true, message: 'Upload Successful', function: this.goToMainPage, type: 'success'}})
+    }
+
+    goToMainPage = () => {
         window.location.href = '/'
+    }
+
+    setAlertToFalse = () => {
+        this.setState({alert: {active: false, type: ''}})
     }
 
     render(){
         return(   
             <div className="page">
+                <AlertMessage type={this.state.alert.type} alert={this.state.alert.active} message={this.state.alert.message} onOK={this.state.alert.function} />
                 <BackButton/>
                 <h1> Upload </h1>
                 <div className="container-upload-image">

@@ -3,11 +3,17 @@ import '../../styles.css'
 import './register.css'
 import api from '../../services/api'
 import BackButton from '../components/backbutton'
+import AlertMessage from '../components/message-alert/message-alert'
 
 export default class Register extends Component{
 
     state = {
-        loading: false
+        loading: false,
+        alert: {
+            active: false,
+            message: 'sample message',
+            function: () => {}
+        }
     }
 
 
@@ -23,12 +29,12 @@ export default class Register extends Component{
 
         
         if(!email || !pass || !pass2 || !user){
-            alert('Fill in all fields ')
+            this.setState({alert: {active: true, type: 'warning',message: 'Fill all the fields', function: this.setAlertToFalse}})
             return
         }
 
         if(!(pass === pass2)){
-            alert('Passwords do not match ')
+            this.setState({alert: {active: true, type: 'warning',message: 'Passwords do not match', function: this.setAlertToFalse}})
             return
         }
 
@@ -58,7 +64,7 @@ export default class Register extends Component{
             this.redirectToDashboard()
         })
         .catch(erro => {
-            alert(erro.response.data.error)
+            this.setState({alert: {active: true, type:'error', message: erro.response.data.error, function: this.setAlertToFalse}})
         })
     }
 
@@ -66,9 +72,14 @@ export default class Register extends Component{
         window.location.href = '/'
     }
 
+    setAlertToFalse = () => {
+        this.setState({alert: {active: false}})
+    }
+
     render(){
         return(   
             <div className="page">
+                <AlertMessage type={this.state.alert.type} alert={this.state.alert.active} message={this.state.alert.message} onOK={this.state.alert.function} />
                 <BackButton/>
 
                 <h2 className="login-title"> Register </h2>
