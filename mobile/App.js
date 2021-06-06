@@ -5,6 +5,10 @@ import DeslikeIcon from './src/assets/deslike.png';
 import LikeIcon from './src/assets/like.png';
 import api from './src/services/api'
 import Video from 'react-native-video';
+import BottomNavigation from './src/components/bottomNavigation/bottom-navigation'
+import GoogleAds from './src/components/ad/google-ads';
+
+// require('dotenv').config()
 
 
 export default class Exemple extends Component {
@@ -25,7 +29,7 @@ export default class Exemple extends Component {
 
   loadRequests = async() => {
     try{
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWFjODNlMTM1ZGFhMjA5OGI4NjNmMiIsImlhdCI6MTYyMjIzNTA3NSwiZXhwIjoxNjI0ODI3MDc1fQ._YxR62UuFBB8fJoDC_e5qUVuqjeJspSuaj3TtqLR4E8"
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYmQwODRkMzc5NjNmMjQ2NDk4NGM1NCIsImlhdCI6MTYyMzAwMTE2NX0.oBbomwcmmVKXLJ5XJEpMEevJf-NX4OCsI9RzY2SNWMA'
         const authorizaton = {
             headers: {
             'Authorization': `Bearer ${token}` 
@@ -41,71 +45,77 @@ export default class Exemple extends Component {
   }
 
 
+  rateMeme = (cardIndex) => {
+    console.log(cardIndex)
+  }
+
+
   render(){
       const DeslikeIconUri = Image.resolveAssetSource(DeslikeIcon).uri
       const LikeIconUri = Image.resolveAssetSource(LikeIcon).uri
+
       return !this.state.isloading ? (
       <SafeAreaView style={styles.container}>
+        
         <Swiper
             cards={this.state.meme}
             renderCard={(card) => {
 
-              const playNow = this.state.meme.indexOf(card) === this.state.currentCard ? false : true
-              
-              console.log(`IOF: ${this.state.meme.indexOf(card)} | CC: ${this.state.currentCard} | PNW: ${playNow}`)
+              const playNow = this.state.meme.indexOf(card) == this.state.currentCard ? true : false
+              // console.log(`IOF: ${this.state.meme.indexOf(card)} | CC: ${this.state.currentCard} | PNW: ${playNow}`)
 
                 return (
                     <View style={styles.card}>
-                          {
-                            card.mimetype.includes('video') ?
-                            <Video repeat={true} style={styles.memeContent} paused={playNow} controls={true} source={{
-                              uri: card.imageUrl
-                            }}/>
-                        
-                            :
 
-                            <Image style={styles.memeContent} source={{
-                              uri: card.imageUrl
-                            }}/>
+                        { 
+                          card.mimetype.includes('video') ?
+                          <Video repeat={true} style={styles.memeContent} paused={playNow} controls={true} source={{
+                            uri: card.imageUrl
+                          }}/>
+                      
+                          :
 
-                          }
+                          <Image style={styles.memeContent} source={{
+                            uri: card.imageUrl
+                          }}/>
+                        }
 
                       <View style={styles.cardBottom}>
 
-                        <Image style={styles.deslikeIcon} source={{
-                          uri: DeslikeIconUri
-                        }}/>
+                        <View style={styles.rateView}>
+                          <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
+                          <Text style={styles.dislikestxt}> {card.dislikes} </Text>
+                        </View>
+
 
                         <View style={styles.cardBottomMiddle}>
                           <Text style={styles.memeDescriptionTxt}>{card.description}</Text>
                           <Text style={styles.publisherNameTxt}>@{card.publisherName}</Text>
                         </View>
 
-                        <Image style={styles.likeIcon} source={{
-                          uri: LikeIconUri
-                        }}/>
+                        <View>
+                          <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
+                          <Text style={styles.likestxt}> {card.likes} </Text>
+                        </View>
+
 
                       </View>
                     </View>
                 )
             }}
             verticalSwipe={false}
-            onSwiped={(cardIndex) => {console.log(cardIndex); this.setState({currentCard: cardIndex + 1})}}
+            onSwiped={(cardIndex) => {console.log(cardIndex); this.setState({currentCard: cardIndex + 1}); this.rateMeme(cardIndex)}}
             onSwipedAll={() => {console.log('onSwipedAll')}}
             cardIndex={0}
             backgroundColor={'#1f2125'}
             stackSize={3}
-            cardHorizontalMargin={1}>
+            cardHorizontalMargin={1}
+            >
 
-          <TouchableOpacity style={styles.uploadButton} title="TESTE">
-            <Text style={styles.uploadButtonTxt}>Upload Meme</Text>
-          </TouchableOpacity>
+          <BottomNavigation page='home'/>
+          <GoogleAds/>
 
-          <TouchableOpacity style={styles.likedMemesButton} title="TESTE">
-            <Text style={styles.uploadButtonTxt}>Liked Memes</Text>
-          </TouchableOpacity>
-
-            </Swiper>
+          </Swiper>
       </SafeAreaView>
     ) : (
       <SafeAreaView style={styles.container}>
@@ -125,8 +135,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#282a2e",
     width: '100%',
-    maxHeight: '85%',
-    marginTop: 50,
+    maxHeight: '86%',
+    marginTop: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
@@ -137,7 +147,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cardBottom: {
-    // backgroundColor: '#FFC000',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -147,15 +156,15 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   },
   likeIcon: {
-    width: 50,
-    height: 50,
-    marginRight: 10
+    width: 40,
+    height: 40,
+    marginRight: 15
   },
   deslikeIcon:{
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     transform: [{ rotate: '180deg' }],
-    marginLeft: 10
+    marginLeft: 15
   },
   text: {
     textAlign: "center",
@@ -189,31 +198,17 @@ const styles = StyleSheet.create({
   memeDescriptionTxt:{
     color: '#f5f5f5'
   },
-  uploadButton:{
-    height: 50,
-    width: 110,
-    margin: 10,
-    borderColor: '#006eff',
-    borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    position: 'absolute',
-    right: 0
+  rateView: {
+    color: '#00FFC0'
   },
-  likedMemesButton: {
-    height: 50,
-    width: 110,
-    margin: 10,
-    borderColor: '#006eff',
-    borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    position: 'absolute',
-    left: 0
+  dislikestxt:{
+    color: '#fff',
+    marginLeft: 28,
+    marginTop: 10
   },
-  uploadButtonTxt:{
-    color: '#fff'
+  likestxt:{
+    color: '#fff',
+    marginLeft: 15,
+    marginTop: 10
   }
 });
