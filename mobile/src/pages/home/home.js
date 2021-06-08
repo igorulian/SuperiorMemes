@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
-import { Button, StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { Button, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import DeslikeIcon from '../../assets/deslike.png';
 import LikeIcon from '../../assets/like.png';
 import api from '../../services/api'
@@ -8,6 +8,8 @@ import Video from 'react-native-video';
 import BottomNavigation from '../../components/bottomNavigation/bottom-navigation'
 import GoogleAds from '../../components/ad/google-ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import styles from './styles'
 
 export default class Home extends Component {
 
@@ -167,7 +169,6 @@ export default class Home extends Component {
                 )
             }}
             verticalSwipe={false}
-            // onSwiped={(cardIndex) => {console.log(cardIndex); this.setState({currentCard: cardIndex + 1}); this.rateMeme(cardIndex)}}
             onSwipedAll={() => {console.log('onSwipedAll')}}
             cardIndex={0}
             backgroundColor={'#1f2125'}
@@ -177,7 +178,6 @@ export default class Home extends Component {
             onSwipedLeft={() => {this.rateMeme(0)}}
             >
 
-          {/* <BottomNavigation page='home'/> */}
           <GoogleAds/>
 
           </Swiper>
@@ -189,88 +189,3 @@ export default class Home extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column'
-  },
-  card: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#282a2e",
-    width: '100%',
-    maxHeight: '86%',
-    marginTop: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 2,  
-    elevation: 5,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  cardBottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: 20,
-    alignSelf: 'flex-end',
-    // backgroundColor: '#eb3434',
-  },
-  likeIcon: {
-    width: 40,
-    height: 40,
-    marginRight: 15,
-    bottom: 0,
-  },
-  deslikeIcon:{
-    width: 40,
-    height: 40,
-    transform: [{ rotate: '180deg' }],
-    marginLeft: 15,
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 50,
-    backgroundColor: "transparent"
-  },
-  memeContent: {
-    width: 380,
-    height: 430,
-  },
-  publisherNameTxt:{
-    color: '#cfcfcf',
-    marginTop: 5,
-    bottom: 0,
-    position: 'absolute',
-    marginBottom: 5
-  },
-  ad: {
-    width: '100%',
-    height: 80,
-    backgroundColor: '#eb3434'
-  },
-  cardBottomMiddle:{
-    padding: 5,
-    // backgroundColor: '#00FFC0',
-    height: '100%',
-    width: '60%',
-    alignItems: 'center'
-  },
-  memeDescriptionTxt:{
-    color: '#f5f5f5'
-  },
-  dislikestxt:{
-    color: '#fff',
-    marginLeft: 28,
-    marginTop: 10
-  },
-  likestxt:{
-    color: '#fff',
-    marginLeft: 15,
-    marginTop: 10
-  }
-});
