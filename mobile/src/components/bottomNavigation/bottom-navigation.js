@@ -18,23 +18,23 @@ export default class BottomNavigation extends Component {
 
         return(
             <SafeAreaView style={styles.boxstyle}>
-                <TouchableOpacity style={styles.button} title="TESTE">
-                    <Image style={styles.icons} source={{ uri: UploadIconUri }}/>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button} title="TESTE">
+                <TouchableOpacity style={styles.button} title="profile">
                     <Image style={styles.icons} source={{ uri: ProfileIconUri }}/>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.homeButton} title="TESTE">
+                <TouchableOpacity style={styles.button} title="upload">
+                    <Image style={styles.icons} source={{ uri: UploadIconUri }}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.homeButton} title="home">
                     <Image style={styles.icons} source={{ uri: DuckIconUri }}/>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} title="TESTE">
+                <TouchableOpacity style={styles.button} title="like">
                     <Image style={styles.icons} source={{ uri: HeartIconUri }}/>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} title="TESTE">
+                <TouchableOpacity style={styles.button} title="share">
                     <Image style={styles.icons} source={{ uri: ShareIconUri }}/>
                 </TouchableOpacity>
             </SafeAreaView>
@@ -49,11 +49,9 @@ const styles =  StyleSheet.create({
         bottom: 0,
         width: '100%',
         height: 60,    
-        // backgroundColor: '#00FFC0',
         zIndex: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        // marginBottom: 10,
         backgroundColor: "#282a2e",
         
     },
@@ -80,6 +78,6 @@ const styles =  StyleSheet.create({
     icons:{
         width: 30,
         height: 30,
-        opacity: 0.3
+        opacity: 0.5
     },
 })
