@@ -24,7 +24,7 @@ export default App = () => {
           component={Home}
           options={{
             tabBarLabel: 'Profile',
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <FontAwesome name="user" color={color} size={iconSize}/>
             ),
           }}  
@@ -34,7 +34,7 @@ export default App = () => {
           component={Home}
           options={{
             tabBarLabel: 'Upload',
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="upload" color={color} size={iconSize + 5} />
             ),
           }}  
@@ -44,7 +44,7 @@ export default App = () => {
           component={Home}
           options={{
             tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="duck" color={color} size={iconSize + 10} />
             ),
           }}  
@@ -54,7 +54,7 @@ export default App = () => {
           component={Home}
           options={{
             tabBarLabel: 'Like',
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <AntDesign name="heart" color={color} size={iconSize} />
             ),
           }}  
@@ -64,7 +64,7 @@ export default App = () => {
           component={Home}
           options={{
             tabBarLabel: 'Share',
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <Fontisto name="share-a" color={color} size={iconSize} />
             ),
           }}  
