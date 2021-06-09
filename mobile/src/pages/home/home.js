@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
-import { Button, Text, View, SafeAreaView, Image, TouchableOpacity, StatusBar } from 'react-native'
+import { Button, Text, View, SafeAreaView, Image  } from 'react-native'
 import DeslikeIcon from '../../assets/deslike.png';
 import LikeIcon from '../../assets/like.png';
 import api from '../../services/api'
@@ -126,14 +126,15 @@ export default class Home extends Component {
       const DeslikeIconUri = Image.resolveAssetSource(DeslikeIcon).uri
       const LikeIconUri = Image.resolveAssetSource(LikeIcon).uri
 
-      return <>
-        <StatusBar backgroundColor='#1f2125'/>
-        <GoogleAds/>
+      if(this.state.isloading)
+        return <Loading/>
 
-      {
-        !this.state.isloading  ? (
+      return(
+        <>
+          <GoogleAds/>
+
           <SafeAreaView style={styles.container}>
-            
+  
             <Swiper
                 cards={this.state.meme}
                 renderCard={(card) => {
@@ -180,11 +181,7 @@ export default class Home extends Component {
                 onSwipedLeft={() => {this.rateMeme(0)}}
                 />
           </SafeAreaView>
-        ) : (
-          <Loading/>
-        )
-      }
-    </> 
-    
+        </>
+      )
   }
 }
