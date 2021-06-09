@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       backgroundColor: "#282a2e",
       width: '100%',
-      maxHeight: '86%',
+      maxHeight: '100%',
       marginTop: 20,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 1 },
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
       elevation: 5,
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginBottom: 20
     },
     cardBottom: {
       flexDirection: 'row',

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
-import { Button, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { Button, Text, View, SafeAreaView, Image, TouchableOpacity, StatusBar } from 'react-native'
 import DeslikeIcon from '../../assets/deslike.png';
 import LikeIcon from '../../assets/like.png';
 import api from '../../services/api'
 import Video from 'react-native-video';
-import BottomNavigation from '../../components/bottomNavigation/bottom-navigation'
 import GoogleAds from '../../components/ad/google-ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loading from '../../components/loading'
 
 import styles from './styles'
 
@@ -126,66 +126,65 @@ export default class Home extends Component {
       const DeslikeIconUri = Image.resolveAssetSource(DeslikeIcon).uri
       const LikeIconUri = Image.resolveAssetSource(LikeIcon).uri
 
-      return !this.state.isloading ? (
-      <SafeAreaView style={styles.container}>
-        
-        <Swiper
-            cards={this.state.meme}
-            renderCard={(card) => {
+      return <>
+        <StatusBar backgroundColor='#1f2125'/>
+        <GoogleAds/>
 
-              // const pause = this.state.meme.indexOf(card) == this.state.currentCard ? false : true
-              // console.log(`IOF: ${this.state.meme.indexOf(card)} | CC: ${this.state.currentCard} | paused: ${pause} | mimetype: ${card.mimetype}`)
+      {
+        !this.state.isloading  ? (
+          <SafeAreaView style={styles.container}>
+            
+            <Swiper
+                cards={this.state.meme}
+                renderCard={(card) => {
+                  
+                    return (
+                        <View style={styles.card}>
 
-                return (
-                    <View style={styles.card}>
+                          { card.mimetype.includes('video') ?
+                            <Video repeat={true} style={styles.memeContent} paused={true} controls={true} source={{ uri: card.imageUrl }}/>
+                            :
+                            <Image style={styles.memeContent} source={{ uri: card.imageUrl }}/>
+                          }
 
-                      { card.mimetype.includes('video') ?
-                        <Video repeat={true} style={styles.memeContent} paused={true} controls={true} source={{ uri: card.imageUrl }}/>
-                        :
-                        <Image style={styles.memeContent} source={{ uri: card.imageUrl }}/>
-                      }
+                          <View style={styles.cardBottom}>
 
-                      <View style={styles.cardBottom}>
+                            <View>
+                              <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
+                              <Text style={styles.dislikestxt}> {card.dislikes} </Text>
+                            </View>
 
-                        <View>
-                          <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
-                          <Text style={styles.dislikestxt}> {card.dislikes} </Text>
+
+                            <View style={styles.cardBottomMiddle}>
+                              <Text style={styles.memeDescriptionTxt}>{card.description}</Text>
+                              <Text style={styles.publisherNameTxt}>@{card.publisherName}</Text>
+                            </View>
+
+                            <View>
+                              <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
+                              <Text style={styles.likestxt}> {card.likes} </Text>
+                            </View>
+
+
+                          </View>
                         </View>
-
-
-                        <View style={styles.cardBottomMiddle}>
-                          <Text style={styles.memeDescriptionTxt}>{card.description}</Text>
-                          <Text style={styles.publisherNameTxt}>@{card.publisherName}</Text>
-                        </View>
-
-                        <View>
-                          <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
-                          <Text style={styles.likestxt}> {card.likes} </Text>
-                        </View>
-
-
-                      </View>
-                    </View>
-                )
-            }}
-            verticalSwipe={false}
-            onSwipedAll={() => {console.log('onSwipedAll')}}
-            cardIndex={0}
-            backgroundColor={'#1f2125'}
-            stackSize={3}
-            cardHorizontalMargin={1}
-            onSwipedRight={() => {this.rateMeme(1)}}
-            onSwipedLeft={() => {this.rateMeme(0)}}
-            >
-
-          <GoogleAds/>
-
-          </Swiper>
-      </SafeAreaView>
-    ) : (
-      <SafeAreaView style={styles.container}>
-        <Text> CARREGANDO </Text>
-      </SafeAreaView>
-    )
+                    )
+                }}
+                verticalSwipe={false}
+                onSwipedAll={() => {console.log('onSwipedAll')}}
+                cardIndex={0}
+                backgroundColor={'#1f2125'}
+                stackSize={3}
+                cardHorizontalMargin={1}
+                onSwipedRight={() => {this.rateMeme(1)}}
+                onSwipedLeft={() => {this.rateMeme(0)}}
+                />
+          </SafeAreaView>
+        ) : (
+          <Loading/>
+        )
+      }
+    </> 
+    
   }
 }
