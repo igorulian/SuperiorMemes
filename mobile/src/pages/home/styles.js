@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       backgroundColor: "#282a2e",
+      // backgroundColor: "#00ff22",
       width: '100%',
       maxHeight: '100%',
       marginTop: 20,
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 20
+      marginBottom: 40,
     },
     cardBottom: {
       flexDirection: 'row',
@@ -31,7 +32,10 @@ const styles = StyleSheet.create({
       width: '100%',
       marginTop: 20,
       alignSelf: 'flex-end',
-      // backgroundColor: '#eb3434',
+      // backgroundColor: '#cc3534',
+      bottom: 0,
+      position: 'absolute',
+      marginBottom: 10
     },
     likeIcon: {
       width: 40,
@@ -51,8 +55,13 @@ const styles = StyleSheet.create({
       backgroundColor: "transparent"
     },
     memeContent: {
+      flex: 1,
       width: 380,
-      height: 430,
+      height: 480,
+      marginTop: 5,
+      marginBottom: 5,
+      top: 0,
+      position: 'absolute'
     },
     publisherNameTxt:{
       color: '#cfcfcf',
