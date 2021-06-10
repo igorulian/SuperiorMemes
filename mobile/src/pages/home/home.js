@@ -122,6 +122,7 @@ export default class Home extends Component {
   }
 
 
+
   render(){
       const DeslikeIconUri = Image.resolveAssetSource(DeslikeIcon).uri
       const LikeIconUri = Image.resolveAssetSource(LikeIcon).uri
@@ -129,47 +130,48 @@ export default class Home extends Component {
       if(this.state.isloading)
         return <Loading/>
 
+
       return(
-        <>
+        <SafeAreaView style={styles.container}>
           <GoogleAds/>
 
-          <SafeAreaView style={styles.container}>
-  
             <Swiper
-                cards={this.state.meme}
-                renderCard={(card) => {
-                  
-                    return (
-                        <View style={styles.card}>
+              cards={this.state.meme}
+              renderCard={(card) => {
+                
+                  const paused = this.state.meme.indexOf(card) != this.state.currentCard
 
-                          { card.mimetype.includes('video') ?
-                            <Video repeat={true} style={styles.memeContent} paused={true} controls={true} source={{ uri: card.imageUrl }}/>
-                            :
-                            <Image style={styles.memeContent} source={{ uri: card.imageUrl }}/>
-                          }
+                  return (
+                    <View style={styles.card}>
 
-                          <View style={styles.cardBottom}>
+                      { card.mimetype.includes('video') ?
+                        <Video repeat={true} style={styles.memeContent} paused={paused} controls={true} source={{ uri: card.imageUrl }}/>
+                        :
+                        <Image style={styles.memeContent} source={{ uri: card.imageUrl }}/>
+                      }
 
-                            <View>
-                              <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
-                              <Text style={styles.dislikestxt}> {card.dislikes} </Text>
-                            </View>
+                      <View style={styles.cardBottom}>
 
-
-                            <View style={styles.cardBottomMiddle}>
-                              <Text style={styles.memeDescriptionTxt}>{card.description}</Text>
-                              <Text style={styles.publisherNameTxt}>@{card.publisherName}</Text>
-                            </View>
-
-                            <View>
-                              <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
-                              <Text style={styles.likestxt}> {card.likes} </Text>
-                            </View>
-
-
-                          </View>
+                        <View>
+                          <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
+                          <Text style={styles.dislikestxt}> {card.dislikes} </Text>
                         </View>
-                    )
+
+
+                        <View style={styles.cardBottomMiddle}>
+                          <Text style={styles.memeDescriptionTxt}>{card.description}</Text>
+                          <Text style={styles.publisherNameTxt}>@{card.publisherName}</Text>
+                        </View>
+
+                        <View>
+                          <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
+                          <Text style={styles.likestxt}> {card.likes} </Text>
+                        </View>
+
+
+                      </View>
+                    </View>
+                  )
                 }}
                 verticalSwipe={false}
                 onSwipedAll={() => {console.log('onSwipedAll')}}
@@ -179,9 +181,9 @@ export default class Home extends Component {
                 cardHorizontalMargin={1}
                 onSwipedRight={() => {this.rateMeme(1)}}
                 onSwipedLeft={() => {this.rateMeme(0)}}
-                />
-          </SafeAreaView>
-        </>
+          />
+
+        </SafeAreaView>
       )
   }
 }
