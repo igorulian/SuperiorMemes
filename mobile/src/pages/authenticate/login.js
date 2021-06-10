@@ -56,7 +56,7 @@ export default class Login extends Component {
 
 
                     <TouchableOpacity onPress={() => {this.props.goToRegister()}}>
-                        <Text style={styles.registerText}>  Register now </Text>
+                        <Text style={styles.registerText}>  Register with e-mail </Text>
                     </TouchableOpacity>
                 </View>
             </View>
