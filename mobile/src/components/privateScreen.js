@@ -6,12 +6,13 @@ import Authenticate from '../pages/authenticate/authenticate'
 import Home from '../pages/home/home'
 import LikedMemes from '../pages/likedmemes/likedmemes'
 
+
 export default class PrivateScreen extends Component {
     state = { 
         isLoading: true,
-        authenticated: false,
-        to: this.props.to
+        authenticated: false
     }
+    
 
     componentDidMount(){
         this.checkAuthenticate()
