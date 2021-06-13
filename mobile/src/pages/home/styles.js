@@ -32,9 +32,7 @@ const styles = StyleSheet.create({
       width: '100%',
       marginTop: 20,
       alignSelf: 'flex-end',
-      // backgroundColor: '#cc3534',
       bottom: 0,
-      position: 'absolute',
       marginBottom: 10
     },
     likeIcon: {
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
       marginTop: 5,
       marginBottom: 5,
       top: 0,
-      position: 'absolute'
+      // position: 'absolute'
     },
     publisherNameTxt:{
       color: '#cfcfcf',

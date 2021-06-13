@@ -10,6 +10,7 @@ import Home from './pages/home/home'
 import Authenticate from './pages/authenticate/authenticate'
 import PrivateScreen from './components/privateScreen'
 import LikedMemes from './pages/likedmemes/likedmemes'
+import Upload from './pages/upload/upload'
 
 const Tab = createBottomTabNavigator()
 
@@ -31,7 +32,7 @@ export const TabRoutes = () => (
       <Tab.Screen
         name="Upload"
         component={PrivateScreen}
-        initialParams={{to: LikedMemes}}
+        initialParams={{to: Upload}}
         options={{
           tabBarLabel: 'Upload',
           tabBarIcon: ({color})  => <MaterialCommunityIcons name="upload" color={color} size={iconSize + 5} />
