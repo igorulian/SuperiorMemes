@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
       marginBottom: 10
     },
     likeIcon: {
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       marginRight: 15,
       bottom: 0,
     },
     deslikeIcon:{
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       transform: [{ rotate: '180deg' }],
       marginLeft: 15,
     },
@@ -85,12 +85,12 @@ const styles = StyleSheet.create({
     },
     dislikestxt:{
       color: '#fff',
-      marginLeft: 28,
+      marginLeft: 23,
       marginTop: 10
     },
     likestxt:{
       color: '#fff',
-      marginLeft: 15,
+      marginLeft: 10,
       marginTop: 10
     }
   });

@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     title:{
         color: '#faf601',
         fontSize: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        top: 0,
+        position: 'absolute'
     }
 })
