@@ -2,6 +2,4 @@
 
 An app to view and share memes (photos, videos and gifs) with the whole community 
 
-# Web page
-
-.... soon 
+# I still have to make this readme
