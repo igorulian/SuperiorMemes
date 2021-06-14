@@ -8,6 +8,7 @@ import Video from 'react-native-video';
 import GoogleAds from '../../components/ad/google-ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../components/loading'
+import NoMemesAvailable from './no-memes-available';
 
 import styles from './styles'
 
@@ -129,6 +130,9 @@ export default class Home extends Component {
 
       if(this.state.isloading)
         return <Loading/>
+
+      if(this.state.meme.length <= 0)
+        return <NoMemesAvailable/>
 
 
       return(
