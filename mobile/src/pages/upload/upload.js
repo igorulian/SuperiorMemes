@@ -14,7 +14,7 @@ export default class Upload extends Component {
 
                 <View style={styles.uploadContainer}>
                     <TouchableOpacity style={styles.uploadContent}>
-                        <MaterialCommunityIcons name="upload" color={'#faf016'} size={100} />
+                        <MaterialCommunityIcons name="upload" color={'#faf601'} size={100} />
                     </TouchableOpacity>
 
                     <View style={styles.descriptionContainer}>
