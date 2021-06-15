@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import DocumentPicker from 'react-native-document-picker';
 import api from '../../services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Title from '../../components/title'
 
 export default class Upload extends Component {
 
@@ -158,9 +159,7 @@ export default class Upload extends Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>
-                    Upload 
-                </Text>
+                <Title text="Upload"/>
 
                 <View style={styles.uploadContainer}>
 

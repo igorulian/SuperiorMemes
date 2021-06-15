@@ -5,10 +5,11 @@ import DeslikeIcon from '../../assets/deslike.png';
 import LikeIcon from '../../assets/like.png';
 import api from '../../services/api'
 import Video from 'react-native-video';
-import GoogleAds from '../../components/ad/google-ads';
+import GoogleAds from '../../components/google-ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../components/loading'
 import NoMemesAvailable from './no-memes-available';
+import Title from '../../components/title'
 
 import styles from './styles'
 
@@ -137,7 +138,8 @@ export default class Home extends Component {
 
       return(
         <SafeAreaView style={styles.container}>
-          <GoogleAds/>
+          {/* <GoogleAds/> */}
+          <Title text="Quack Memes"/>
 
             <Swiper
               cards={this.state.meme}

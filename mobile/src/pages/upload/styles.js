@@ -8,13 +8,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 45,
     },
-    title:{
-        color: '#faf601',
-        fontSize: 20,
-        marginBottom: 20,
-        top: 0,
-        position: 'absolute'
-    },
     uploadContainer:{
         marginBottom: 50,
         alignItems: 'center',

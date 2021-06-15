@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, FlatList, Alert, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, FlatList, Alert, SafeAreaView, StyleSheet } from 'react-native';
 import {styles} from './styles'
 import MemeContent from './meme/meme-content'
 import Loading from '../../components/loading';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Title from '../../components/title'
 
 export default class LikedMemes extends Component {
 
@@ -52,9 +53,10 @@ export default class LikedMemes extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 
-                <Text style={styles.title}> Liked Memes</Text>
+                <Title text="Liked Memes"/>
 
                 <FlatList
+                    style={StyleSheet.create({marginTop: 50})}
                     data={this.state.memes}
                     keyExtractor={item => item._id}
                     numColumns={2}
