@@ -26,7 +26,7 @@ export default class Upload extends Component {
 
             const {uri,type,size} = res
 
-            const maxSize = 2 * 1024 * 1024
+            const maxSize = 10 * 1024 * 1024
             const allowedMimes = [
                 'image/jpeg',
                 'image/pjpeg',
