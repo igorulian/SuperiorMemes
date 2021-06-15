@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image, Alert } from "react-native";
+import Video from 'react-native-video';
 import {styles} from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DocumentPicker from 'react-native-document-picker';
@@ -98,11 +99,11 @@ export default class Upload extends Component {
 
             const response = await api.post(`/upload`,meme,authorizaton)
 
-            console.log(response)
             this.uploadSucessfull()
             this.cancelMemePreview()
-        }catch{
+        }catch (error){
             console.log("ERRO FATAU")
+            console.log(error)
         }
         
         this.setState({uploading: false})
@@ -120,13 +121,11 @@ export default class Upload extends Component {
             mimetype: response.data.mimetype
         }
 
-        console.log(uploadedFile)
-
         return uploadedFile
     }
 
     uploadSucessfull = () => {
-        Alert.alert('Upload Sucessfull!', 'nice job!')
+        Alert.alert('Upload Sucessfull!', 'Nice job!')
     }
 
 
