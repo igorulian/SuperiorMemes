@@ -31,16 +31,18 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     uploadButton:{
-        width: 200,
+        width: 150,
         height: 45,
         backgroundColor: '#faf601',    
         marginTop: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 10
     },
     uploadButtonText:{
         color: '#000',
-        fontSize: 20
+        fontSize: 20,
+        marginRight: 5
     },
     descriptionContainer:{
         marginTop: 20
@@ -57,5 +59,36 @@ export const styles = StyleSheet.create({
     },
     descriptionTxt:{
         color: '#faf601'
+    },
+    imagePreview:{
+        width: 300,
+        height: 300
+    },
+    imagePreviewContainer:{
+        borderWidth: 1,
+        borderColor: '#faf601',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,  
+        elevation: 5
+    },
+    imagePreviewContainerX:{
+        top: 0,
+        right: 0,
+        position: 'absolute',
+        backgroundColor: '#faf601',
+        width: 30,
+        height: 30,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 10
+    },
+    imagePreviewCapsule:{
+        width: 325,
+        height: 325,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
