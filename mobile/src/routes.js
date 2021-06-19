@@ -11,8 +11,10 @@ import Authenticate from './pages/authenticate/authenticate'
 import PrivateScreen from './components/privateScreen'
 import LikedMemes from './pages/likedmemes/likedmemes'
 import Upload from './pages/upload/upload'
+import IndividualMeme from './pages/likedmemes/individual-meme/meme'
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
 const iconSize = 30
 
@@ -50,8 +52,7 @@ export const TabRoutes = () => (
 
       <Tab.Screen
         name="Like"
-        component={PrivateScreen}
-        initialParams={{to: LikedMemes}}
+        component={likedMemesRoute}
         options={{
           tabBarLabel: 'Like',
           tabBarIcon: ({color}) => <AntDesign name="heart" color={color} size={iconSize} />
@@ -61,7 +62,7 @@ export const TabRoutes = () => (
       <Tab.Screen
         name="Share"
         component={PrivateScreen}
-        initialParams={{to: LikedMemes}}
+        initialParams={{to: Upload}}
         options={{
           tabBarLabel: 'Share',
           tabBarIcon: ({color}) => <Fontisto name="share-a" color={color} size={iconSize} />
@@ -69,4 +70,20 @@ export const TabRoutes = () => (
       />
 
   </Tab.Navigator>
+)
+
+
+const likedMemesRoute = () => (
+  <Stack.Navigator initialRouteName="MemeList" screenOptions={{headerShown: false}}>        
+    <Stack.Screen
+      name="MemeIndividual"
+      component={IndividualMeme}  
+    />
+
+    <Stack.Screen 
+      name="MemeList" 
+      component={PrivateScreen}
+      initialParams={{to: LikedMemes}} 
+      />
+  </Stack.Navigator>
 )

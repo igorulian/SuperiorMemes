@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, FlatList, Alert, SafeAreaView, StyleSheet } from 'react-native';
 import {styles} from './styles'
-import MemeContent from './meme/meme-content'
+import MemeContent from './meme-content'
 import Loading from '../../components/loading';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,13 +33,9 @@ export default class LikedMemes extends Component {
                 }
             }
 
-            await api.get(`/list/liked`,authorizaton).then(response => {
+            const response = await api.get(`/list/liked`,authorizaton)
 
-                this.setState({memes: response.data})
-
-            }).catch(erro => {
-                Alert.alert("Error", `${erro.response.data.error}`)
-            })
+            this.setState({memes: response.data})
 
         }catch(err){
             Alert.alert('Error', 'Error in load liked memes' )
