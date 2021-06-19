@@ -10,7 +10,7 @@ export default function MemeContent(props){
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity style={styles.memecontainer} onPress={() => {navigation.navigate('Like', {screen: 'MemeIndividual', testprop: 'aaaabbb'})}}>
+        <TouchableOpacity style={styles.memecontainer} onPress={() => {navigation.navigate('Like', {screen: 'MemeIndividual', params: { meme }})}}>
             <View style={styles.memecontent}>
                 <Image style={styles.memeImage} source={{ uri: meme.imageUrl }}/>
 

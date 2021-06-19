@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       backgroundColor: "#282a2e",
-      // backgroundColor: "#00ff22",
       width: '100%',
       maxHeight: '100%',
       marginTop: 20,
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
       marginTop: 5,
       marginBottom: 5,
       top: 0,
-      // position: 'absolute'
     },
     publisherNameTxt:{
       color: '#cfcfcf',
@@ -75,7 +73,6 @@ const styles = StyleSheet.create({
     },
     cardBottomMiddle:{
       padding: 5,
-      // backgroundColor: '#00FFC0',
       height: '100%',
       width: '60%',
       alignItems: 'center'

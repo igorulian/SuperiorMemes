@@ -11,7 +11,7 @@ import Authenticate from './pages/authenticate/authenticate'
 import PrivateScreen from './components/privateScreen'
 import LikedMemes from './pages/likedmemes/likedmemes'
 import Upload from './pages/upload/upload'
-import IndividualMeme from './pages/likedmemes/individual-meme/meme'
+import IndividualMeme from './pages/likedmemes/individual-meme/individual-meme'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
