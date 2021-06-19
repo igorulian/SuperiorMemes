@@ -12,6 +12,7 @@ import PrivateScreen from './components/privateScreen'
 import LikedMemes from './pages/likedmemes/likedmemes'
 import Upload from './pages/upload/upload'
 import IndividualMeme from './pages/likedmemes/individual-meme/individual-meme'
+import Profile from './pages/profile/profile'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -24,7 +25,7 @@ export const TabRoutes = () => (
       <Tab.Screen
         name="Profile"
         component={PrivateScreen}
-        initialParams={{to: LikedMemes}}
+        initialParams={{to: Profile}}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({color}) =>  <FontAwesome name="user" color={color} size={iconSize}/> 

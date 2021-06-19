@@ -152,7 +152,7 @@ export default class Upload extends Component {
 
         const UploadMemeArea = () => (
             <TouchableOpacity style={styles.uploadContent} onPress={() => {this.getMeme()}}>
-                <MaterialCommunityIcons name="upload" color={'#faf601'} size={100} />
+                <MaterialCommunityIcons name="upload" color={'#bdba00'} size={100} />
                 <Text style={styles.descriptionTxt}> Click to select your meme</Text>
             </TouchableOpacity>
         )
