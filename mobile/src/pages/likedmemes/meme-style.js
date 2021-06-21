@@ -6,12 +6,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#1d1d1d',
         width: 160,
         height: 210,
-        margin: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 2,  
-        elevation: 2,
+        margin: 10
     },
     memecontent:{
         justifyContent: 'center',
