@@ -59,6 +59,43 @@ module.exports = {
             return res.status(400).send({error: 'Error in list memes'})
         }
     },
+    async profileData(req,res){
+        try{
+            const userid = req.tokenUserId
+
+
+            const user = await User.findById(userid)
+            const username = user.user
+            const memes = await Meme.find({publisherID: userid})
+
+            var totallikes = 0, totaldislikes = 0, totalcomments = 0, totalmemes = memes.length
+
+            memes.forEach(meme => {
+                const {likes, dislikes} = meme
+
+                console.log(likes, dislikes)
+
+                totallikes += likes
+                totaldislikes += dislikes
+                
+            });
+
+            const response =  {
+                username,
+                totalmemes,
+                totallikes,
+                totaldislikes,
+                totalcomments
+            }
+
+            console.log(response)
+
+            return res.json(response)
+        }catch(err){
+            console.log(err)
+            return res.status(400).send({error: 'Error in get profile data'})
+        }
+    },
     async listLikedMemes(req,res){ // acho que ñ é mt eficiente desse jeito, mas vai por enquanto
         try{
             const userid = req.tokenUserId

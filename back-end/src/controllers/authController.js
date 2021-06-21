@@ -42,7 +42,7 @@ async function transferRateMemesFromLocalToUserDB(localRatedMemes,newuser) {
         await User.findByIdAndUpdate(newuser._id,{likedMemes})
 
     }catch{
-        console.log('Erro ao transferir dados')
+        console.log('Error transferring data')
     }
 
 }
@@ -88,10 +88,10 @@ module.exports = {
             const user = await User.findOne({email}).select('+password')
 
             if(!user) 
-                return res.status(400).send({error: 'Usuário não encontrado'})
+                return res.status(400).send({error: 'User not found'})
 
             if(!await bcrypt.compare(password, user.password)) // se a senha estiver errada
-                return res.status(400).send({error: 'Senha Inválida'})
+                return res.status(400).send({error: 'Invalid Password'})
             
             user.password = undefined
 
@@ -100,7 +100,7 @@ module.exports = {
                 token: generateToken({id: user.id})
             })
         }catch{
-            res.status(400).send({error: 'Falha ao autenticar'})
+            res.status(400).send({error: 'Authentication failed'})
         }
             
     },
