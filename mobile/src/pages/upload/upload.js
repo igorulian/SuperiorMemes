@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Image, Alert } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, Image, Alert,ActivityIndicator } from "react-native";
 import Video from 'react-native-video';
 import {styles} from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -172,7 +172,7 @@ export default class Upload extends Component {
 
 
                     <TouchableOpacity style={styles.uploadButton} onPress={() => {this.publishMeme()}} enable={false}>
-                        <Text style={styles.uploadButtonText}>  {this.state.uploading ? 'Uploading...' : 'Publish Meme'} </Text>
+                        <Text style={styles.uploadButtonText}>  {this.state.uploading ? <ActivityIndicator size="small" color="#fff"/> : 'Publish Meme'} </Text>
                     </TouchableOpacity>
 
                 </View>
