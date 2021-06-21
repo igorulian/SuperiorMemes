@@ -73,8 +73,6 @@ module.exports = {
             memes.forEach(meme => {
                 const {likes, dislikes} = meme
 
-                console.log(likes, dislikes)
-
                 totallikes += likes
                 totaldislikes += dislikes
                 
@@ -87,8 +85,6 @@ module.exports = {
                 totaldislikes,
                 totalcomments
             }
-
-            console.log(response)
 
             return res.json(response)
         }catch(err){
