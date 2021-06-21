@@ -1,17 +1,19 @@
 import { useState } from "react/cjs/react.production.min";
 import React, { Component } from 'react'
-import {View, Text, TouchableOpacity, Alert} from 'react-native'
+import {View, Text, TouchableOpacity, Alert,FlatList} from 'react-native'
 import {styles} from './style'
 import Title from '../../components/title'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import api from "../../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loading from '../../components/loading' 
 
 export default class Profile extends Component{
 
     state = {
         isLoading: true,
-        data: {}
+        data: {},
+        dataComponents: []
     }
 
     async componentDidMount(){
@@ -31,14 +33,44 @@ export default class Profile extends Component{
 
         await api.get('/profile', authorizaton).then(response => {
             this.setState({data: response.data})
+            this.setDataComponents(response.data)
             console.log(response.data)
         }).catch(error => {
             Alert.alert('Error', error.response.data.error)
         })
     }
 
+    setDataComponents = (data) => {
+        const iconsize = 10
+        var approval = 0 
+        if(data.totalmemes > 0)
+            approval = (data.totallikes / data.totalmemes ) * 100  
+
+        this.setState({dataComponents: [
+            {name: 'Likes', value: data.totallikes, icon: 'thumb-up-outline'},
+            {name: 'Dislikes', value: data.totaldislikes, icon: 'thumb-down-outline'},
+            {name: 'Comments', value: data.totalcomments, icon: 'comment-outline'},
+            {name: 'Memes', value: data.totalmemes, icon: 'image'},
+            {name: 'Approval', value: `${approval}%`, icon: 'star-outline'},
+            {name: 'Lorem Ipsun', value: 100, icon: 'star-outline'}
+        ]})
+    }
+
+
     render(){
+        const DataContent = (data) => (
+            <View style={styles.dataContainer}>
+                <MaterialCommunityIcons name={data.icon} color={'#faf601'} size={50} />
+                <Text style={styles.dataText}> {data.value} </Text>
+                <Text style={styles.dataText}> {data.name} </Text>
+            </View>
+        )
+
+        if(this.state.isLoading)
+            return <Loading/>
+
         return(
+
             <View style={styles.container}>
                 <Title text="Profile"/>
 
@@ -52,40 +84,14 @@ export default class Profile extends Component{
 
                     <Text style={styles.text}> ____________________________ </Text>
 
-                    <View style={styles.dataContainer}>
-
-                        <View style={styles.dataContent}>
-                            <MaterialCommunityIcons name="thumb-up" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> {this.state.data.totallikes} </Text>
-                        </View>
-
-                        <View style={styles.dataContent}>
-                            <MaterialCommunityIcons name="comment" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> {this.state.data.totalcomments} </Text>
-                        </View>
-
-                        <View style={styles.dataContent}>
-                            <MaterialCommunityIcons name="thumb-down" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> {this.state.data.totaldislikes} </Text>
-                        </View>
-
-                    </View>
                     
-                    <Text style={styles.text2}> ____________________________ </Text>
-
-                    <View style={styles.profileButtonsContainer}>
-                        <TouchableOpacity style={styles.profileButton}> 
-                            <Text style={styles.profileButtonText}> My memes </Text> 
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.profileButton}> 
-                            <Text style={styles.profileButtonText}> Lorem ipsum </Text> 
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.profileButton}> 
-                            <Text style={styles.profileButtonText}> Settings </Text> 
-                        </TouchableOpacity>
-                    </View>
+                    <FlatList
+                        style={styles.flatlist}
+                        data={this.state.dataComponents}
+                        keyExtractor={item => item.name}
+                        numColumns={2}
+                        renderItem={({ item }) => { return ( DataContent(item) )}}
+                    />
 
                 </View>
 

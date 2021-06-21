@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         alignItems: 'center',
-        marginTop: 100
+        marginTop: 70
     },
     profilePicture:{
         width: 100,
@@ -20,21 +20,26 @@ export const styles = StyleSheet.create({
         borderColor: '#fff',
         borderWidth: 2,
         justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 20,  
-        elevation: 5,
+        alignItems: 'center'
     },
     profileUsername:{
         marginTop: 20,
         color: '#fff'
     },
     dataContainer:{
-        flexDirection: 'row',
+        width: 120,
+        height: 120,
+        backgroundColor: '#1d1d1d',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+        margin: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.26,
+        shadowOffset: { width: 0, height: 2},
+        shadowRadius: 10,
+        elevation: 1,
+        marginRight: 20,
+        marginLeft: 20
     },
     dataContent:{
         width: 100,
@@ -45,29 +50,13 @@ export const styles = StyleSheet.create({
     },
     text:{
         color: '#575757',
-        marginBottom: -10,
+        marginBottom: 10,
     },
-    text2:{
-        color: '#575757',
-        marginTop: -20,
-        marginBottom: 20
+    flatlist:{
+        marginBottom: 60
     },
-    textData:{
+    dataText:{
         color: '#fff',
-        marginTop: 10
-    },
-    profileButton:{
-        width: 200,
-        height: 50,
-        borderColor: '#faf601',
-        borderWidth: 1.5,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 10
-    },
-    profileButtonText:{
-        color: '#fff',
-        fontSize: 18
+        margin: 2
     }
 })
