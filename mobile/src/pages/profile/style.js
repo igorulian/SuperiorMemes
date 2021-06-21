@@ -53,7 +53,8 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
     flatlist:{
-        marginBottom: 60
+        marginBottom: 50,
+        marginTop: 10
     },
     dataText:{
         color: '#fff',

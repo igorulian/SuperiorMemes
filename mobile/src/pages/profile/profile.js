@@ -82,7 +82,7 @@ export default class Profile extends Component{
                     
                     <Text style={styles.profileUsername}> {`@${this.state.data.username}`} </Text> 
 
-                    <Text style={styles.text}> ____________________________ </Text>
+                    {/* <Text style={styles.text}> ____________________________ </Text> */}
 
                     
                     <FlatList
