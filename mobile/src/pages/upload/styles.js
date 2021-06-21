@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         width: 150,
         height: 45,
         borderColor: '#faf601',    
-        borderWidth: 2,
+        borderWidth: 1.5,
         marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         marginTop: 20
     },
     descriptionInput:{
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#faf601',
         padding: 5,
         paddingLeft: 10,

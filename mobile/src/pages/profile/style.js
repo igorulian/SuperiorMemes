@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
         width: 200,
         height: 50,
         borderColor: '#faf601',
-        borderWidth: 3,
+        borderWidth: 1.5,
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
