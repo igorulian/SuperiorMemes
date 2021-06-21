@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
 import { Button, Text, View, SafeAreaView, Image  } from 'react-native'
-import DeslikeIcon from '../../assets/deslike.png';
-import LikeIcon from '../../assets/like.png';
 import api from '../../services/api'
 import Video from 'react-native-video';
 import GoogleAds from '../../components/google-ads';
@@ -10,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../components/loading'
 import NoMemesAvailable from './no-memes-available';
 import Title from '../../components/title'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles'
 
@@ -126,8 +125,6 @@ export default class Home extends Component {
 
 
   render(){
-      const DeslikeIconUri = Image.resolveAssetSource(DeslikeIcon).uri
-      const LikeIconUri = Image.resolveAssetSource(LikeIcon).uri
 
       if(this.state.isloading)
         return <Loading/>
@@ -159,7 +156,7 @@ export default class Home extends Component {
                       <View style={styles.cardBottom}>
 
                         <View>
-                          <Image style={styles.deslikeIcon} source={{ uri: DeslikeIconUri }}/>
+                          <MaterialCommunityIcons style={styles.deslikeIcon} name="thumb-down-outline" color={'#faf601'} size={30} />
                           <Text style={styles.dislikestxt}> {card.dislikes} </Text>
                         </View>
 
@@ -170,7 +167,7 @@ export default class Home extends Component {
                         </View>
 
                         <View>
-                          <Image style={styles.likeIcon} source={{ uri: LikeIconUri }}/>
+                          <MaterialCommunityIcons style={styles.likeIcon} name="thumb-up" color={'#faf601'} size={30} />
                           <Text style={styles.likestxt}> {card.likes} </Text>
                         </View>
 

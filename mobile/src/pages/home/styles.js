@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     deslikeIcon:{
       width: 30,
       height: 30,
-      transform: [{ rotate: '180deg' }],
       marginLeft: 15,
     },
     text: {
