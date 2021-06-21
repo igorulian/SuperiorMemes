@@ -1,11 +1,41 @@
 import { useState } from "react/cjs/react.production.min";
 import React, { Component } from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Alert} from 'react-native'
 import {styles} from './style'
 import Title from '../../components/title'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import api from "../../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Profile extends Component{
+
+    state = {
+        isLoading: true,
+        data: {}
+    }
+
+    async componentDidMount(){
+        await this.loadRequests()
+        this.setState({isLoading: false})
+    }
+
+
+    loadRequests = async () => {
+        const token = await AsyncStorage.getItem('token')
+
+        const authorizaton = {
+            headers: {
+            'Authorization': `Bearer ${token}` 
+            }
+        }
+
+        await api.get('/profile', authorizaton).then(response => {
+            this.setState({data: response.data})
+            console.log(response.data)
+        }).catch(error => {
+            Alert.alert('Error', error.response.data.error)
+        })
+    }
 
     render(){
         return(
@@ -18,7 +48,7 @@ export default class Profile extends Component{
                         <MaterialCommunityIcons name="duck" color={'#faf601'} size={50} />
                     </View>
                     
-                    <Text style={styles.profileUsername}> @teste </Text> 
+                    <Text style={styles.profileUsername}> {`@${this.state.data.username}`} </Text> 
 
                     <Text style={styles.text}> ____________________________ </Text>
 
@@ -26,17 +56,17 @@ export default class Profile extends Component{
 
                         <View style={styles.dataContent}>
                             <MaterialCommunityIcons name="thumb-up" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> 300 </Text>
+                            <Text style={styles.textData}> {this.state.data.totallikes} </Text>
                         </View>
 
                         <View style={styles.dataContent}>
                             <MaterialCommunityIcons name="comment" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> 20 </Text>
+                            <Text style={styles.textData}> {this.state.data.totalcomments} </Text>
                         </View>
 
                         <View style={styles.dataContent}>
                             <MaterialCommunityIcons name="thumb-down" color={'#faf601'} size={30} />
-                            <Text style={styles.textData}> 400 </Text>
+                            <Text style={styles.textData}> {this.state.data.totaldislikes} </Text>
                         </View>
 
                     </View>

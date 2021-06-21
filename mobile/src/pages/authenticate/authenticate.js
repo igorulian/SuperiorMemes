@@ -37,8 +37,6 @@ export default class Authenticate extends Component {
         try{
             const localRatedMemes = JSON.parse(await AsyncStorage.getItem('guestRatedMemes'))
 
-            console.log(localRatedMemes)
-
             const {email, password, username:user} = data
 
             const req = {
@@ -58,7 +56,7 @@ export default class Authenticate extends Component {
             }).catch(erro => {
                 Alert.alert('Error', erro.response.data.error)
             })
-            
+
         }catch{
             Alert.alert('Error', 'Error ir register', 'try again later')
         }
