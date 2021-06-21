@@ -21,7 +21,7 @@ const iconSize = 30
 
 
 export const TabRoutes = () => (
-  <Tab.Navigator keyboardHidesTabBar={true} initialRouteName="Home" tabBarOptions={{style: {borderTopWidth: 0, position: 'absolute'},activeTintColor: '#faf601', inactiveTintColor: '#faf60166' , showLabel: false ,tabStyle:{backgroundColor: '#282a2e'}}}>
+  <Tab.Navigator keyboardHidesTabBar={true} initialRouteName="Home" tabBarOptions={{style: {borderTopWidth: 0, position: 'absolute'},activeTintColor: '#faf601', inactiveTintColor: '#faf60166' , showLabel: false ,tabStyle:{backgroundColor: '#1d1d1d'}}}>
       <Tab.Screen
         name="Profile"
         component={PrivateScreen}

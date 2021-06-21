@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#1f2125',
+        backgroundColor: '#121212',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 45,
@@ -21,20 +21,22 @@ export const styles = StyleSheet.create({
         borderWidth: 4,
         borderRadius: 0.1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#1d1d1d'
     },
     uploadButton:{
         width: 150,
         height: 45,
-        backgroundColor: '#faf601',    
+        borderColor: '#faf601',    
+        borderWidth: 2,
         marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10
+        borderRadius: 5,   
     },
     uploadButtonText:{
-        color: '#000',
-        fontSize: 20,
+        color: '#fff',
+        fontSize: 19,
         marginRight: 5
     },
     descriptionContainer:{
@@ -49,6 +51,9 @@ export const styles = StyleSheet.create({
         height: 40,
         color: '#fff',
         marginTop: 5
+    },
+    clickToSelectTxt:{
+        color: '#ccc'
     },
     descriptionTxt:{
         color: '#faf601'

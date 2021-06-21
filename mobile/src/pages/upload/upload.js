@@ -59,7 +59,7 @@ export default class Upload extends Component {
     }
 
     cancelMemePreview = () => {
-        this.setState({memeToBeUploaded: {}, hasImagePreview: false, memeDescription: ''})
+        this.setState({memeToBeUploaded: {}, hasImagePreview: false, memeDescription: '', uploading: false})
     }
 
 
@@ -152,8 +152,8 @@ export default class Upload extends Component {
 
         const UploadMemeArea = () => (
             <TouchableOpacity style={styles.uploadContent} onPress={() => {this.getMeme()}}>
-                <MaterialCommunityIcons name="upload" color={'#bdba00'} size={100} />
-                <Text style={styles.descriptionTxt}> Click to select your meme</Text>
+                <MaterialCommunityIcons name="upload" color={'#ccc'} size={100} />
+                <Text style={styles.clickToSelectTxt}> Click to select your meme</Text>
             </TouchableOpacity>
         )
 

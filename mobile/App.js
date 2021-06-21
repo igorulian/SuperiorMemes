@@ -6,7 +6,7 @@ import { StatusBar } from 'react-native'
 export default App = () => {
   return(
     <NavigationContainer>
-      <StatusBar backgroundColor='#1f2125' barStyle='light-content'/>
+      <StatusBar backgroundColor='#121212' barStyle='light-content'/>
       <TabRoutes/>
     </NavigationContainer>
 

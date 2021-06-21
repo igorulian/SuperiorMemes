@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     memecontainer:{
-        backgroundColor: '#282a2e',
+        backgroundColor: '#1d1d1d',
         width: 160,
         height: 210,
         margin: 10,
@@ -23,7 +23,6 @@ export const styles = StyleSheet.create({
         margin: 10
     },
     memefooter:{
-        // backgroundColor: '#333',
         height: 50,
         width: 160,
         alignItems: 'center',

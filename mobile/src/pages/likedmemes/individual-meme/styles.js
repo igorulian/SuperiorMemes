@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native'
 export const styles = StyleSheet.create({
     container:{
         flex: 1,        
-        backgroundColor: '#1f2125',
+        backgroundColor: '#121212',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -20,15 +20,10 @@ export const styles = StyleSheet.create({
     card: {
         flex: 1,
         justifyContent: "center",
-        backgroundColor: "#282a2e",
+        backgroundColor: "#1d1d1d",
         width: '100%',
         maxHeight: '100%',
         marginTop: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 2,  
-        elevation: 5,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',

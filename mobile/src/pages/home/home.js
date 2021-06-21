@@ -182,9 +182,9 @@ export default class Home extends Component {
                 verticalSwipe={false}
                 onSwipedAll={() => {console.log('onSwipedAll')}}
                 cardIndex={0}
-                backgroundColor={'#1f2125'}
-                stackSize={3}
-                cardHorizontalMargin={1}
+                backgroundColor={'#121212'}
+                stackSize={4}
+                cardHorizontalMargin={0}
                 onSwipedRight={() => {this.rateMeme(1)}}
                 onSwipedLeft={() => {this.rateMeme(0)}}
           />
