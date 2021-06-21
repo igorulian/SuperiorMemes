@@ -3,18 +3,21 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#1f2125',
+        backgroundColor: '#121212',
         justifyContent: 'center',
         alignItems: 'center'
     },
     title:{
-        color: '#faf601',
         top: 0,
         fontSize: 30,
-        marginBottom: '10%'
+        marginBottom: '10%',
+        color: '#faf601',
+        textShadowColor: '#faf601',
+        textShadowOffset: {width: 0, height: 0},
+        textShadowRadius: 15
     },
     input:{
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#faf601',
         // borderRadius: 10,
         padding: 5,
@@ -26,7 +29,7 @@ export const styles = StyleSheet.create({
         width: 200,
         height: 40,
         backgroundColor: '#faf601',
-        // borderRadius: 10,
+        borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20
@@ -54,7 +57,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     loginWithContent:{
-        backgroundColor: '#282a2e',
+        backgroundColor: '#1d1d1d',
         height: 40,
         width: 120,
         margin: 5,

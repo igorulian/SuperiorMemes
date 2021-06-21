@@ -49,7 +49,7 @@ export default class Profile extends Component{
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.profileButton}> 
-                            <Text style={styles.profileButtonText}> Lerum Ipsun </Text> 
+                            <Text style={styles.profileButtonText}> Lorem ipsum </Text> 
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.profileButton}> 

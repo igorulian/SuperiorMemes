@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import {styles} from './styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -38,7 +38,7 @@ export default class Login extends Component {
                     </View>
 
                     <TouchableOpacity style={styles.loginButton} onPress={() => {this.checkFields()} }>
-                        <Text style={styles.buttonText}> {this.state.isLoading ? 'Loading...' : 'Login'} </Text>
+                        <Text style={styles.buttonText}> {this.state.isLoading ? <ActivityIndicator size="small" color="#000"/> : 'Login'} </Text>
                     </TouchableOpacity>
 
                     <Text style={styles.registerText}> Or login with </Text>

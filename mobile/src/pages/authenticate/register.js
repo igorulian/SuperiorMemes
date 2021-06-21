@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity,Alert,ActivityIndicator} from 'react-native';
 import {styles} from './styles'
 
 export default class Register extends Component {
+
+    state = {
+        isLoading: false
+    }
+
+    checkFields = async () => {
+        const {username, email, pass1, pass2} = this.state
+
+        if(!email || !username || !pass1 || !pass2)
+            return Alert.alert("Fill all the fields")
+
+        if(pass1 !== pass2)
+            return Alert.alert("Passwords do not match")
+
+        this.setState({isLoading: true})
+        await this.props.register({email,password: pass1, username})
+        this.setState({isLoading: false})
+    }   
 
     render() {
         return (
@@ -12,21 +30,21 @@ export default class Register extends Component {
 
                     <View style={styles.form}>
                         <Text style={styles.inputtxt}> Username </Text>
-                        <TextInput style={styles.input} placeholder="Digite seu usuário" keyboardType="default"  placeholderTextColor="#FFF"/>
+                        <TextInput style={styles.input} placeholder="Digite seu usuário" onChangeText={text => this.setState({ username: text })} keyboardType="default"  placeholderTextColor="#FFF"/>
                         
                         <Text style={styles.inputtxt}> Email </Text>
-                        <TextInput style={styles.input} placeholder="Digite seu email" keyboardType="email-address"  placeholderTextColor="#FFF"/>
+                        <TextInput style={styles.input} placeholder="Digite seu email" onChangeText={text => this.setState({ email: text })} keyboardType="email-address"  placeholderTextColor="#FFF"/>
                         
                         <Text style={styles.inputtxt}> Password </Text>
-                        <TextInput style={styles.input} placeholder="Digite sua senha" keyboardType="default"  placeholderTextColor="#FFF"/>
+                        <TextInput style={styles.input} placeholder="Digite sua senha" onChangeText={text => this.setState({ pass1: text })} keyboardType="default"  placeholderTextColor="#FFF"/>
                         
                         <Text style={styles.inputtxt}> Confirm password </Text>
-                        <TextInput style={styles.input} placeholder="Confirme sua senha" keyboardType="default"  placeholderTextColor="#FFF"/>
+                        <TextInput style={styles.input} placeholder="Confirme sua senha" onChangeText={text => this.setState({ pass2: text })} keyboardType="default"  placeholderTextColor="#FFF"/>
                     </View>
 
                     
-                    <TouchableOpacity style={styles.loginButton}>
-                        <Text style={styles.buttonText}> Register </Text>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => this.checkFields()}>
+                        <Text style={styles.buttonText}> {this.state.isLoading ? <ActivityIndicator size="small" color="#000"/> : 'Register' } </Text>
                     </TouchableOpacity>
 
                     
