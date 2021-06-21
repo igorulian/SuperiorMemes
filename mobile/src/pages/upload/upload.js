@@ -143,7 +143,7 @@ export default class Upload extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.imagePreviewContainerX} onPress={() => {this.cancelMemePreview()}}> 
-                    <Text> X </Text>
+                    <MaterialCommunityIcons name="close" color={'#000'} size={20} />
                 </TouchableOpacity>
 
 

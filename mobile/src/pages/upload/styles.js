@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         borderRadius: 0.1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1d1d1d'
+        // backgroundColor: '#1d1d1d'
     },
     uploadButton:{
         width: 150,
@@ -63,13 +63,8 @@ export const styles = StyleSheet.create({
         height: 300
     },
     imagePreviewContainer:{
-        borderWidth: 1,
-        borderColor: '#faf601',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 2,  
-        elevation: 5
+        borderWidth: .5,
+        borderColor: '#faf601'
     },
     imagePreviewContainerX:{
         top: 0,
