@@ -1,14 +1,14 @@
 .swipe-content{
-    background-color: #282a2e;
+    background-color: #191919;
     width: fit-content;
     height: 620px;
     min-width: 502px;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    border: 3px solid #282a2e;
+    border: 3px solid #191919;
     border-radius: 10px;
-    box-shadow: 2px 2px 3px 3px #1b1b1b;
+    box-shadow: 0 2.7px 10.9px rgb(0, 0, 0,0.4);
 }
 
 .swipe-content img{
