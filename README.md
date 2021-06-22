@@ -96,7 +96,7 @@ AWS_REGION=
 $ git clone https://github.com/igorulian/quack-memes.git
 
 # Go to backend folder
-$ cd server
+$ cd backend
 
 # Install the dependencies 
 $ npm install
@@ -126,7 +126,7 @@ $ npm run start                   (web)
 $ npx react-native run-android (android)
 $ npx react-native run-ios (ios)
 
-(to run the mobile aplication you must have installed an android or ios virtual machine)
+#(to run the mobile aplication you must have installed an android or ios virtual machine)
 
 ```
 
@@ -183,4 +183,4 @@ Made with ❤️ by Igor Ulian
 
 ## README Version
 
-[Português 🇧🇷](./README-pt.md) [English 🇺🇸](./README.md)
+[Português 🇧🇷](./README-pt-br.md) [English 🇺🇸](./README.md)
