@@ -26,9 +26,10 @@
   - [ ] Login with google / facebook
 
 - [x] Logged mode
-  - [x] User can share your memes with the community
-  - [x] User can see the performance average of your memes
-  - [x] User can see all your liked memes
+  - [x] Upload your memes to the community
+  - [x] Check the performance average of your memes
+  - [x] See all your liked memes
+  - [ ] Share memes to whatsapp or another app
 
 ---
 
@@ -138,38 +139,35 @@ The following tools were used in the construction of the project:
 
 #### **Website** ([React](https://reactjs.org/))
 
--   **[react-router-dom](https://github.com/igorulian)**
--   **[react-icons](https://github.com/igorulian)**
--   **[react-loading](https://github.com/igorulian)**
--   **[react-tinder-card](https://github.com/igorulian)**
--   **[styled-components](https://github.com/igorulian)**
+-   **[react-router-dom](https://www.npmjs.com/package/react-router-domreact-icons)**
+-   **[react-icons](https://www.npmjs.com/package/react-icons)**
+-   **[react-loading](https://www.npmjs.com/package/react-loading)**
+-   **[react-tinder-card](https://www.npmjs.com/package/react-tinder-card)**
 -   **[react-dropzone](https://github.com/react-dropzone/react-dropzone)**
--   **[react-scripts](https://github.com/igorulian)**
 
 
 #### **Server** ([NodeJS](https://nodejs.org/en/))
 
--   **[express](https://github.com/igorulian)**
--   **[aws-sdk](https://github.com/igorulian)**
--   **[bcryptjs](https://github.com/igorulian)**
--   **[multer](https://github.com/igorulian)**
--   **[multer-s3](https://github.com/igorulian)**
--   **[crypto](https://github.com/igorulian)**
--   **[mongoose](https://github.com/igorulian)**
--   **[mongoose-paginate](https://github.com/igorulian)**
--   **[jsonwebtoken](https://github.com/igorulian)**
--   **[dotenv](https://github.com/igorulian)**
+-   **[express](https://www.npmjs.com/package/express)**
+-   **[aws-sdk](https://www.npmjs.com/package/aws-sdk)**
+-   **[bcryptjs](https://www.npmjs.com/package/bcryptjs)**
+-   **[multer](https://www.npmjs.com/package/multer)**
+-   **[multer-s3](https://www.npmjs.com/package/multer-s3)**
+-   **[crypto](https://www.npmjs.com/package/crypto)**
+-   **[mongoose](https://www.npmjs.com/package/mongoose)**
+-   **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**
+-   **[dotenv](https://www.npmjs.com/package/dotenv)**
 
 
 #### **Mobile** ([React Native](http://www.reactnative.com/))
 
--   **[react-navigation](https://github.com/igorulian)**
--   **[react-native-deck-swiper](https://github.com/igorulian)**
--   **[react-native-document-picker](https://github.com/igorulian)**
--   **[react-native-gesture-handler](https://github.com/igorulian)**
--   **[react-native-safe-area-context](https://github.com/axios/axios)**
--   **[react-native-video](https://github.com/igorulian)**
--   **[react-native-async-storage](https://github.com/igorulian)**
+-   **[react-navigation](https://www.npmjs.com/package/react-navigation)**
+-   **[react-native-deck-swiper](https://www.npmjs.com/package/react-native-deck-swiper)**
+-   **[react-native-document-picker](https://www.npmjs.com/package/react-native-document-picker)**
+-   **[react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler)**
+-   **[react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context)**
+-   **[react-native-video](https://www.npmjs.com/package/react-native-video)**
+-   **[react-native-async-storage](https://www.npmjs.com/package/react-native-async-storag)**
 
 ---
 
