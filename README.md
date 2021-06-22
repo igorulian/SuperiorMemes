@@ -23,6 +23,7 @@
 - [x] Guest mode
   - [x] User cannot upload memes util login
   - [x] You can rate the memes
+  - [ ] Login with google / facebook
 
 - [x] Logged mode
   - [x] User can share your memes with the community
@@ -33,19 +34,25 @@
 
 ## 🎨 Layout
 
-### Mobile
+### 📱 Mobile
 
 <p align="center">
-	<img src="https://i.ibb.co/FVfk5YC/Screenshot-1624318245.png" alt="Screenshot-1624318245" border="0" width="20%" heigth="20%">
-	<img src="https://i.ibb.co/9TL49RK/Screenshot-1624318253.png" alt="Screenshot-1624318253" border="0" width="20%" heigth="20%">
-	<img src="https://i.ibb.co/rFgBG2f/Screenshot-1624318241.png" alt="Screenshot-1624318241" border="0" width="20%" heigth="20%">
-	<img src="https://i.ibb.co/Wp6hdNW/Screenshot-1624318249.png" alt="Screenshot-1624318249" border="0" width="20%" heigth="20%">
+	<img src="https://i.ibb.co/FVfk5YC/Screenshot-1624318245.png" alt="Screenshot-1624318245" border="0" width="18%" heigth="18%">
+        <img src="https://i.ibb.co/ZXCtLv8/Screenshot-1624368848.png" alt="Screenshot-1624368848" border="0" width="18%" heigth="18%">
+	<img src="https://i.ibb.co/9TL49RK/Screenshot-1624318253.png" alt="Screenshot-1624318253" border="0" width="18%" heigth="18%">
+	<img src="https://i.ibb.co/rFgBG2f/Screenshot-1624318241.png" alt="Screenshot-1624318241" border="0" width="18%" heigth="18%">
+	<img src="https://i.ibb.co/Wp6hdNW/Screenshot-1624318249.png" alt="Screenshot-1624318249" border="0" width="18%" heigth="18%">
 </p>
 
-### Web
+
+### 🖥️ Web
 
 <p align="center">
-  <img alt="Web Image "/>
+  	<img src="https://i.ibb.co/JR9prqc/DKPexe1.jpg" alt="DKPexe1" border="0" width="45%" height="45%">
+	<img src="https://i.ibb.co/zSzQCV3/DKPexe2.jpg" alt="DKPexe2" border="0" width="45%" height="45%">
+	<img src="https://i.ibb.co/XYVptqY/DKPexe3.jpg" alt="DKPexe3" border="0" width="45%" height="45%">
+	<!-- <img src="https://i.ibb.co/FVkj3jb/DKPexe4.jpg" alt="DKPexe4" border="0" width="45%" height="45%"> -->
+	<img src="https://i.ibb.co/GW4S6fc/DKPexe5.jpg" alt="DKPexe5" border="0" width="45%" height="45%">
 </p>
 
 ---
@@ -98,20 +105,30 @@ $ node server.js
 
 ```
 
-#### 🧭 Rodando a aplicação web (Frontend)
+#### 🧭 Running web/mobile aplication
 
 ```bash
 
-# Go to frontend folder
-$ cd frontend
+# Go to frontend/mobile folder
+$ cd frontend  
+or
+$ cd mobile
 
 # Install the dependencies
 $ npm install
 
-# Run the aplication
-$ npm run start
+# Run the web aplication
+$ npm run start                   (web)
+
+
+# Run the mobile aplication
+$ npx react-native run-android (android)
+$ npx react-native run-ios (ios)
+
+(to run the mobile aplication you must have installed an android or ios virtual machine)
 
 ```
+
 
 ---
 
