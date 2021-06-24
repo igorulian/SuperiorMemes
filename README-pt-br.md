@@ -1,35 +1,35 @@
 
 
 <h1 align="center">
-     <a href="#" alt="site do ecoleta"> 🦆 Quack Memes </a>
+     <a href="#" alt="site do ecoleta"> 🦆 Quack Memes (🇧🇷 pt-br) </a>
 </h1>
 
 <h3 align="center">
-    🙂 App for sharing funny photos, videos and gifs.
+      🙂 Aplicativo para compartilhar fotos, videos e gifs engraçados 
 </h3>
 
 <h4 align="center">
-	🚧  Work in progress... 🚧
+	🚧  Em construção... 🚧
 </h4>
 
-## 💻 About the project 
-
-🦆 Quack Memes - An app to view and share fun videos, photos and gifs. In it you can rate the ones you liked the most and still have access to feedback from your own memes. 
-
+## 💻 Sobre o projeto
+ 
+ 🦆 Um aplicativo para compartilhar fotos, videos e gifs engraçados. Nele você pode avaliar os que mais gostou e ainda ter acesso ao feedback de seus próprios memes. 
+  
 ---
 
 ## ⚙️ Features
 
-- [x] Guest mode
-  - [x] User cannot upload memes util login
-  - [x] You can rate the memes
-  - [ ] Login with google / facebook
+- [x] Modo convidado
+  - [x] Usuário não pode enviar seus prórprios meme até estar logado
+  - [x] Você pode avaliar os memes
+  - [ ] Logar com google / facebook
 
-- [x] Logged mode
-  - [x] Upload your memes to the community
-  - [x] Check the performance average of your memes
-  - [x] See all your liked memes
-  - [ ] Share memes to whatsapp or another app
+- [x] Modo logado
+  - [x] Usuário pode enviar seus prórprios memes
+  - [x] Ver a performace média de seus memes
+  - [x] Ver todos os memes que curtiu
+  - [ ] Compartilhar os memes para outros aplicavos, como whatsapp
 
 ---
 
@@ -58,23 +58,23 @@
 
 ---
 
-## 🚀 How to run the project
+## 🚀 Como executar o projeto
 
-This project is divided into three parts:
+Esse projeto é dividido em três partes:
 1. Backend 
 2. Frontend
 3. Mobile 
 
-💡 Both Frontend and Mobile need the Backend to be running in order to function. 
+💡 Ambos frontend e mobile precisam que o backend esteja rodando para funcionar corretamente.
 
-### 🧪 Requirement 
+### 🧪 Requerimentos 
 
-Before starting, you will need to have the following tools installed on your machine: 
+Antes de começar, você precisará ter as seguintes ferramentas instaladas em sua máquina: 
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
 
-In addition, it will be necessary to fill in the fields of the .env file, for that you can find
-the '.env-example' file in the server folder, which contains the example of the variables, as in the text below. 
-After filling in all the fields, rename the file from '.env-example' to '.env'.
+Além disso, será necessário preencher os campos do arquivo .env, para isso você poderá encontrar
+o arquivo '.env-example' na pasta do servidor, que contém o exemplo das variáveis, conforme o texto abaixo.
+Após preencher todos os campos, renomeie o arquivo de '.env-example' para '.env'. 
 
 ```bash
 
@@ -88,54 +88,54 @@ AWS_REGION=
 ```
 
 
-#### 🎲 Running Backend (server)
+#### 🎲 Rodando Backend (servidor)
 
 ```bash
 
-# Clone this repository
+# Clone esse repositório
 $ git clone https://github.com/igorulian/quack-memes.git
 
-# Go to backend folder
+# Vá para a pasta do backend
 $ cd backend
 
-# Install the dependencies 
+# Instale as dependências
 $ npm install
 
-# Run the server.js file
+# Rode o arquivo server.js
 $ node server.js
 
 ```
 
-#### 🧭 Running web/mobile aplication
+#### 🧭 Rodando aplicação web/mobile 
 
 ```bash
 
-# Go to frontend/mobile folder
+# Vá para a pasta do frontend/mobile
 $ cd frontend  
 or
 $ cd mobile
 
-# Install the dependencies
+# Instale as dependências
 $ npm install
 
-# Run the web aplication
+# Rode a aplicação web
 $ npm run start                   (web)
 
 
-# Run the mobile aplication
+# Rode a aplicação mobile
 $ npx react-native run-android (android)
 $ npx react-native run-ios (ios)
 
-#(to run the mobile aplication you must have installed an android or ios virtual machine)
+#(para rodar a aplicação mobile você precisará ter instalado uma máquina virtual android ou ios)
 
 ```
 
 
 ---
 
-## 🛠 Technologies
+## 🛠 Tecnologias
 
-The following tools were used in the construction of the project:
+As seguintes ferramentas foram utilizadas na construção do projeto: 
 
 #### **Website** ([React](https://reactjs.org/))
 
@@ -146,7 +146,7 @@ The following tools were used in the construction of the project:
 -   **[react-dropzone](https://github.com/react-dropzone/react-dropzone)**
 
 
-#### **Server** ([NodeJS](https://nodejs.org/en/))
+#### **Backend** ([NodeJS](https://nodejs.org/en/))
 
 -   **[express](https://www.npmjs.com/package/express)**
 -   **[aws-sdk](https://www.npmjs.com/package/aws-sdk)**
@@ -171,16 +171,16 @@ The following tools were used in the construction of the project:
 
 ---
 
-## 📝 License
+## 📝 Licença 
 
-This project is under license [MIT](./LICENSE.md).
-
----
-
-Made with ❤️ by Igor Ulian
+Este projeto está sob licença [MIT](./LICENSE.md).
 
 ---
 
-## README Version
+Feito com ❤️ por Igor Ulian
 
-[Português 🇧🇷](./README-pt-br.md) [English 🇺🇸](./README.md)
+---
+
+## Versão do README
+
+[Português 🇧🇷](./README-pt.md)             [English 🇺🇸](./README.md)
