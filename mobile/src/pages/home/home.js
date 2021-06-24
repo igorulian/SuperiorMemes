@@ -144,6 +144,8 @@ export default class Home extends Component {
                 
                   const paused = this.state.meme.indexOf(card) != this.state.currentCard
 
+                  if(!card) return
+
                   return (
                     <View style={styles.card}>
 
@@ -180,7 +182,7 @@ export default class Home extends Component {
                 onSwipedAll={() => {console.log('onSwipedAll')}}
                 cardIndex={0}
                 backgroundColor={'#121212'}
-                stackSize={4}
+                stackSize={10}
                 cardHorizontalMargin={0}
                 onSwipedRight={() => {this.rateMeme(1)}}
                 onSwipedLeft={() => {this.rateMeme(0)}}
